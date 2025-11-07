@@ -5,17 +5,19 @@ import "slick-carousel/slick/slick-theme.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import bgImage from "../assets/Hero/Section.png";
-import Burger from "../assets/Hero/Burger.png";
-import bager from "../assets/Hero/bagar.png";
-import Pizza from "../assets/Hero/pizza.png";
+import bgImage from "../../assets/Hero/Section.png";
+import Burger from "../../assets/Hero/Burger.png";
+import bager from "../../assets/Hero/bagar.png";
+import Pizza from "../../assets/Hero/pizza.png";
 
 
-import BurgerText from "../assets/Hero/burgertext.png";
-import PizzaText from "../assets/Hero/pizzatext.png";
+import BurgerText from "../../assets/Hero/burgertext.png";
+import PizzaText from "../../assets/Hero/pizzatext.png";
 
 
 import PopularFood from "./PopularFood";
+import Section2 from "./Section2";
+import Section3 from "./Section3";
 
 const ImageList = [
   {
@@ -162,6 +164,14 @@ const Home = () => {
 
     <section>
        <PopularFood/>
+    </section>
+
+    <section>
+      <Section2/>
+    </section>
+
+    <section>
+      <Section3/>
     </section>
     </>
 

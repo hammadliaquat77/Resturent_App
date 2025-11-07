@@ -2,12 +2,12 @@ import React from 'react'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
-import First from "../assets/PopularFood/First.png"
-import Second from "../assets/PopularFood/Second.png"
-import tomato_shape from "../assets/PopularFood/tomato-shape.png"
-import burger_shape from "../assets/PopularFood/burger-shape.png"
-import chilli_shape from "../assets/PopularFood/chili-shape.png"
-import fries_shape from "../assets/PopularFood/fry-shape.png"
+import First from "../../assets/PopularFood/First.png"
+import Second from "../../assets/PopularFood/Second.png"
+import tomato_shape from "../../assets/PopularFood/tomato-shape.png"
+import burger_shape from "../../assets/PopularFood/burger-shape.png"
+import chilli_shape from "../../assets/PopularFood/chili-shape.png"
+import fries_shape from "../../assets/PopularFood/fry-shape.png"
 
 
 function PopularFood() {
@@ -75,7 +75,7 @@ function PopularFood() {
                         <div className='flex flex-col md:flex-row sm:flex-row lg:flex-row mt-12 justify-between items-center gap-6'>
 
                             {/* First Image Box */}
-                            <div className='lg:w-[370px] md:w-[290px] sm:w-[180px] w-full flex justify-center'>
+                            <div className='lg:w-[390px] md:w-[290px] sm:w-[180px] w-full flex justify-center'>
                                 <img
                                     src={First}
                                     alt=""
