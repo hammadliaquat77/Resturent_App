@@ -18,6 +18,11 @@ import PizzaText from "../../assets/Hero/pizzatext.png";
 import PopularFood from "./PopularFood";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
+import Section4 from "./Section4";
+import Section5 from "./Section5";
+import Section6 from "./Section6";
+import Section7 from "./Section7";
+import Section8 from "./Section8";
 
 const ImageList = [
   {
@@ -172,6 +177,26 @@ const Home = () => {
 
     <section>
       <Section3/>
+    </section>
+
+    <section>
+      <Section4/>
+    </section>
+
+    <section>
+      <Section5/>
+    </section>
+
+    <section>
+      <Section6/>
+    </section>
+
+    <section>
+      <Section7/>
+    </section>
+
+    <section>
+      <Section8/>
     </section>
     </>
 
