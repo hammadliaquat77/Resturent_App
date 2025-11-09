@@ -149,7 +149,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="shrink-0 flex items-center">
             <span className="ml-2 font-bold text-xl text-gray-900">
               TasteNest
             </span>
@@ -176,7 +176,7 @@ const Navbar = () => {
                   <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                 </svg>
               </button>
-              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-[8rem] z-50">
+              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-32 z-50">
                 <Link
                   to="/shop/option1"
                   className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
@@ -208,7 +208,7 @@ const Navbar = () => {
                   <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                 </svg>
               </button>
-              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-[8rem] z-50">
+              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-32 z-50">
                 <Link
                   to="/pages/option1"
                   className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
