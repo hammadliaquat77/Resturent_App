@@ -130,6 +130,8 @@
 
 
 
+// with Redux tolkit
+
 import React, { useState, useEffect } from "react";
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from "react-icons/fa";
 
@@ -140,28 +142,34 @@ import burger_shape from "../../assets/PopularFood/burger-shape.png";
 import chilli_shape from "../../assets/PopularFood/chili-shape.png";
 import fries_shape from "../../assets/PopularFood/fry-shape.png";
 
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { fetchMenu } from "../../redux/slices/product.Slice";
 
 function PopularFood() {
-
-    const dispatch = useDispatch();
-
-    const {items, status } = useSelector((state) => state.menu);
-
+  const dispatch = useDispatch();
+  const { items, status } = useSelector((state) => state.menu);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  // total cards to show according to screen width
-  const cardsPerView = window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 4;
+  const [cardsPerView, setCardsPerView] = useState(4); // default lg
 
-      useEffect(()=> {
-       dispatch(fetchMenu());
-    },[dispatch]);
+  // Fetch menu
+  useEffect(() => {
+    dispatch(fetchMenu());
+  }, [dispatch]);
 
-    // console.log("items ==>", items);
-    
+  // Responsive cardsPerView
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setCardsPerView(4); // lg
+      else if (window.innerWidth >= 768) setCardsPerView(3); // md
+      else if (window.innerWidth >= 640) setCardsPerView(2); // sm
+      else setCardsPerView(1); // mobile
+    };
 
-
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const nextSlide = () => {
     if (currentIndex < items.length - cardsPerView) {
@@ -176,8 +184,7 @@ function PopularFood() {
   };
 
   return (
-    <>
-      <section className="relative w-full min-h-[92vh] bg-[#F5F8FD] flex flex-col overflow-hidden">
+    <section className="relative w-full min-h-[92vh] bg-[#F5F8FD] flex flex-col overflow-hidden">
       {/* background shapes */}
       <img src={tomato_shape} alt="" className="absolute w-10 mt-10 hidden md:block" />
       <img src={burger_shape} alt="" className="absolute w-20 mt-[450px] ml-10 hidden md:block" />
@@ -211,12 +218,8 @@ function PopularFood() {
 
         {/* Cards Slider */}
         <div className="overflow-hidden md:px-20 px-4">
-          {status === "loading" && (
-            <p className="text-center py-10 text-gray-500">Loading menu...</p>
-          )}
-          {status === "failed" && (
-            <p className="text-center py-10 text-red-500">Failed to load data.</p>
-          )}
+          {status === "loading" && <p className="text-center py-10 text-gray-500">Loading menu...</p>}
+          {status === "failed" && <p className="text-center py-10 text-red-500">Failed to load data.</p>}
 
           {status === "succeeded" && (
             <div
@@ -228,7 +231,7 @@ function PopularFood() {
               {items.map((item) => (
                 <div
                   key={item.id}
-                  className="min-w-full sm:min-w-[50%] md:min-w-[25%] flex justify-center"
+                  className={`flex justify-center px-2 min-w-[${100 / cardsPerView}%]`}
                 >
                   <div className="h-[270px] w-[200px] gap-6 bg-white flex flex-col justify-center items-center rounded-xl shadow-sm hover:scale-105 transition">
                     <img
@@ -236,13 +239,9 @@ function PopularFood() {
                       alt={item.title}
                       className="h-[120px] w-[120px] rounded-full object-cover"
                     />
-                    <div className="flex flex-col items-center gap-0">
-                      <p className="text-md font-bold text-center truncate w-[150px]">
-                        {item.title}
-                      </p>
-                      <span className="text-[12px] text-yellow-500 font-bold">
-                        Rs. {item.price}
-                      </span>
+                    <div className="flex flex-col items-center gap-0 mt-3">
+                      <p className="text-md font-bold text-center truncate w-[150px]">{item.title}</p>
+                      <span className="text-[12px] text-yellow-500 font-bold">Rs. {item.price}</span>
                     </div>
                   </div>
                 </div>
@@ -266,7 +265,6 @@ function PopularFood() {
         </div>
       </main>
     </section>
-    </>
   );
 }
 
