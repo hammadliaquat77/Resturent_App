@@ -145,7 +145,21 @@ import fries_shape from "../../assets/PopularFood/fry-shape.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMenu } from "../../redux/slices/product.Slice";
 
+// Animation
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+
 function PopularFood() {
+
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+
+
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.menu);
 
@@ -222,15 +236,14 @@ function PopularFood() {
           {status === "failed" && <p className="text-center py-10 text-red-500">Failed to load data.</p>}
 
           {status === "succeeded" && (
-            <div
+            <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{
                 transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
               }}
             >
               {items.map((item) => (
-                <div
-                  key={item.id}
+                <div  data-aos="fade-up" key={item._id}
                   className={`flex justify-center px-2 min-w-[${100 / cardsPerView}%]`}
                 >
                   <div className="h-[270px] w-[200px] gap-6 bg-white flex flex-col justify-center items-center rounded-xl shadow-sm hover:scale-105 transition">
@@ -255,10 +268,10 @@ function PopularFood() {
       <main className="md:w-[90%] sm:w-[95%] w-full mx-auto">
         <div className="md:px-32 px-16 py-10">
           <div className="flex flex-col md:flex-row sm:flex-row lg:flex-row mt-12 justify-between items-center gap-6">
-            <div className="lg:w-[390px] md:w-[290px] sm:w-[180px] w-full flex justify-center">
+            <div data-aos="fade-right" className="lg:w-[390px] md:w-[290px] sm:w-[180px] w-full flex justify-center">
               <img src={First} alt="" className="w-full max-w-[220px] sm:max-w-none" />
             </div>
-            <div className="lg:w-[530px] md:w-[400px] sm:w-[250px] w-full flex justify-center">
+            <div data-aos="fade-left" className="lg:w-[530px] md:w-[400px] sm:w-[250px] w-full flex justify-center">
               <img src={Second} alt="" className="w-full max-w-[250px] sm:max-w-none" />
             </div>
           </div>

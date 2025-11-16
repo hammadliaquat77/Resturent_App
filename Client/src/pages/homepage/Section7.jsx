@@ -2,7 +2,19 @@ import React from "react";
 import DealBg from "../../assets/Section7/DealBg.png";
 import Bg from "../../assets/Section7/Bg.png";
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 function Section7() {
+
+  AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+
+
   return (
     <section className="relative bg-white flex flex-col justify-center items-center overflow-hidden py-10">
       <main className="flex flex-col md:flex-row w-full max-w-8xl mx-auto">
@@ -27,21 +39,21 @@ function Section7() {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <span className="text-[12px] sm:text-sm tracking-tighter text-green-500 mb-3">
+          <span data-aos="fade-up" className="text-[12px] sm:text-sm tracking-tighter text-green-500 mb-3">
             Crispy, Every Bite Taste
           </span>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-snug">
+          <h1 data-aos="fade-up" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-snug">
             KFC Chicken Hot <br /> Wing & French Fries
           </h1>
 
-          <p className="text-[11px] sm:text-[13px] md:text-sm text-gray-600 mb-4">
+          <p data-aos="fade-up" className="text-[11px] sm:text-[13px] md:text-sm text-gray-600 mb-4">
             Wheat tortilla with spicy chicken bites, cheese sauce <br className="hidden sm:block" />
             tomatoes and soft cheese
           </p>
 
           {/* Countdown Timer */}
-          <div className="flex justify-center gap-4 mt-3 sm:mt-5">
+          <div data-aos="fade-up" className="flex justify-center gap-4 mt-3 sm:mt-5">
             {[
               { value: "30", label: "Days" },
               { value: "22", label: "Hours" },
@@ -59,7 +71,7 @@ function Section7() {
             ))}
           </div>
 
-          <button className="py-3 sm:py-4 px-6 sm:px-8 bg-green-500 mt-6 text-white rounded-md text-[12px] sm:text-sm hover:bg-green-600 transition-all duration-300">
+          <button data-aos="fade-up" className="py-3 sm:py-4 px-6 sm:px-8 bg-green-500 mt-6 text-white rounded-md text-[12px] sm:text-sm hover:bg-green-600 transition-all duration-300">
             Order Now
           </button>
         </div>

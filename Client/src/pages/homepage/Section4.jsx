@@ -71,14 +71,26 @@
 import React from 'react'
 import Bg from "../../assets/Section4/Bg.png"
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 function Section4() {
+
+  AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+
+
   return (
     <section
       className="relative bg-[#F5F8FD] flex flex-col justify-center items-center overflow-hidden bg-cover bg-center bg-no-repeat py-16 sm:py-20 md:py-24"
       style={{ backgroundImage: `url(${Bg})` }}
     >
       <main className="w-[90%] sm:w-[85%] md:w-[80%] lg:w-[70%] xl:w-[80%] mx-auto text-center md:text-left">
-        <div className="flex flex-col justify-center items-center md:items-start">
+        <div data-aos="fade-left" className="flex flex-col justify-center items-center md:items-start">
           {/* Top Text */}
           <span className="text-[10px] sm:text-[12px] text-green-500 font-bold tracking-wider uppercase">
             CRISPY, EVERY BITE TASTE

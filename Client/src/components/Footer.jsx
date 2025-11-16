@@ -62,7 +62,7 @@ function Footer() {
 
                 {/* Bottom Footer Bar */}
                 <div className="border-t border-yellow-400 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center text-gray-700 font-semibold text-sm">
-                    <p>© 2025 TasteNest | All shawonetc3 Themes</p>
+                    <p>© 2025 {Date.now()} TasteNest | All shawonetc3 Themes</p>
                     <div className="flex space-x-6 mt-2 md:mt-0">
                         <a href="#" className="underline">Facebook</a>
                         <a href="#" className="underline">Instagram</a>

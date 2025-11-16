@@ -24,6 +24,11 @@ import Section6 from "./Section6";
 import Section7 from "./Section7";
 import Section8 from "./Section8";
 
+// 
+// import { useNavigate } from "react-router-dom";
+
+
+
 const ImageList = [
   {
     id: 1,
@@ -54,6 +59,7 @@ const ImageList = [
 ];
 
 const Home = () => {
+
   const settings = {
     dots: false,
     arrows: false,

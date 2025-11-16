@@ -2,32 +2,6 @@ import { Order } from "../models/order.model.js";
 import { Inventry } from "../models/inventery.model.js";
 
 
-// place new order (customer)
-// const placeOrder = async (req, res) => {
-//     try {
-//         const {  orderItems, totalPrice, paymentType, address } = req.body;
-        
-//         const newOrder = await Order.create({
-//             user: req.user._id,
-//             orderItems,
-//             totalPrice,
-//             paymentType,
-//             address
-//         })
-
-//         res.status(201).json({ 
-//             success: true, 
-//             message: "Order placed successfully",
-//             newOrder 
-//         });
-         
-//     } catch (error) {
-//         res.status(500).json({ message: error.message })
-//     }
-// }
-
-
-
 const placeOrder = async (req, res) => {
     try {
         const {  orderItems, totalPrice, paymentType, address } = req.body;
@@ -58,6 +32,9 @@ const placeOrder = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
+
+
+
 
 
 

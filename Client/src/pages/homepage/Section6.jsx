@@ -99,12 +99,24 @@ import Vector from "../../assets/Section6/Vector.png"
 import BurgerDeal from "../../assets/Section6/BurgerDeal.png"
 import FastfoodDeal from "../../assets/Section6/FastFood.png"
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 function Section6() {
+
+  AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+
+
   return (
     <section className="relative bg-[#FFFFFF] flex flex-col justify-center items-center overflow-hidden py-10 sm:py-16 md:py-20 lg:py-24">
 
       {/* FIRST SECTION (Banner) */}
-      <main className="w-full flex justify-center px-4 sm:px-8 md:px-16 lg:px-40">
+      <main data-aos="fade-down" className="w-full flex justify-center px-4 sm:px-8 md:px-16 lg:px-40">
         <img
           src={Banner}
           alt="Banner"
@@ -115,7 +127,7 @@ function Section6() {
       {/* SECOND SECTION */}
       <main className="w-full flex flex-col md:flex-row items-center justify-center gap-10 mt-12 px-4 sm:px-8 md:px-16 lg:px-40 mb-5">
         {/* LEFT SIDE */}
-        <div className="flex justify-center md:justify-start">
+        <div data-aos="fade-right" className="flex justify-center md:justify-start">
           <img
             src={Burger}
             alt="Burger"
@@ -124,7 +136,7 @@ function Section6() {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex flex-col items-start text-center md:text-left">
+        <div data-aos="fade-left" className="flex flex-col items-start text-center md:text-left">
           <span className="text-[12px] sm:text-[13px] uppercase font-bold text-green-500">
             About OUR FOOD
           </span>
@@ -188,13 +200,13 @@ function Section6() {
       </main>
 
       {/* THIRD SECTION */}
-      <main className="w-full flex flex-col sm:flex-row justify-center items-center gap-5 mt-12 px-4 sm:px-8 md:px-16 lg:px-40">
-        <img
+      <main  className="w-full flex flex-col sm:flex-row justify-center items-center gap-5 mt-12 px-4 sm:px-8 md:px-16 lg:px-40">
+        <img data-aos="fade-down"
           src={BurgerDeal}
           alt="Burger Deal"
           className="w-full sm:w-[430px] h-auto sm:h-[250px] object-cover rounded-lg"
         />
-        <img
+        <img data-aos="fade-up"
           src={FastfoodDeal}
           alt="Fast Food Deal"
           className="w-full sm:w-[350px] h-auto sm:h-[250px] object-cover rounded-lg"

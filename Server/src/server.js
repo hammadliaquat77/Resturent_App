@@ -11,6 +11,7 @@ import orderRoute from "./routes/order.route.js";
 import reservationRoute from "./routes/reservation.route.js";
 import inventryRoute from "./routes/inventry.route.js";
 import staffRoute from "./routes/staff.route.js";
+import cartRoute from "./routes/cart.route.js";
 
 
 
@@ -30,6 +31,7 @@ app.use("/api/order", orderRoute);
 app.use("/api/reservation", reservationRoute);
 app.use("/api/inventry", inventryRoute);
 app.use("/api/staff", staffRoute);
+app.use("/api/cart", cartRoute);
 
 
 const Port = process.env.PORT || 5000;

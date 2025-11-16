@@ -260,7 +260,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -268,11 +268,28 @@ import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from "../../redux/slices/product.Slice";
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 function Section3() {
+
+  AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+    });
+
+
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.menu);
 
-  console.log("ITEMS==> ", items);
+  useEffect(()=> {
+     dispatch(fetchMenu())
+  },[dispatch])
+
+  // console.log("ITEMS==> ", items);
 
   const [seeAll, setSeeAll] = useState(false);
   const visibleItems = seeAll ? items : items.slice(0, 8);
@@ -324,7 +341,7 @@ function Section3() {
       <main className="md:px-20 px-4 pb-10">
         <Slider {...settings}>
           {visibleItems.map((item) => (
-            <div key={item.id} className="px-2 min-w-0">
+            <div data-aos="fade-up" key={item.id} className="px-2 min-w-0">
               <div className="bg-white rounded-2xl flex flex-col items-center py-6 shadow-md hover:scale-105 transition-transform duration-200">
                 <img
                   src={item.image}
