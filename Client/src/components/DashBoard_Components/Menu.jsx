@@ -1,36 +1,660 @@
-import React from 'react';
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import {useSelector, useDispatch} from "react-redux";
+// import { fetchMenu } from "../../redux/slices/product.Slice";
+
+
+// function Menu() {
+
+//   const token = localStorage.getItem("token");
+  
+//   const dispatch = useDispatch();
+//   const menuItems = useSelector(state => state.menu.items);
+
+//   // console.log(menuItems);
+
+// // Fetch all menu items
+
+//   useEffect(() => {
+//     dispatch(fetchMenu());
+//   }, [dispatch]);
+
+  
+//   // Add MENU
+//     const [newItem, setNewItem] = useState({
+//     name: "",
+//     price: "",
+//     category: "Main",
+//     description: "",
+//     image: "",
+//     status: "Available",
+//   });
+
+//   const [imageFile, setImageFile] = useState(null);
+
+//   const addMenuItem = async (e) => {
+//   e.preventDefault();
+
+//   if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || !imageFile) {
+//     alert("Please fill in all the required fields.");
+//     return;
+//   }
+
+//   try {
+//     const formData = new FormData();
+//     formData.append("name", newItem.name);
+//     formData.append("price", newItem.price);
+//     formData.append("category", newItem.category);
+//     formData.append("description", newItem.description);
+//     formData.append("status", newItem.status);
+//     formData.append("image", imageFile); // file
+
+//     const res = await axios.post("http://localhost:8000/api/menu/add", formData, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "multipart/form-data",
+//       },
+//     });
+
+//     console.log(res.data);
+
+//     // Reset form
+//     setNewItem({
+//       name: "",
+//       price: "",
+//       category: "Main",
+//       description: "",
+//       status: "Available",
+//     });
+//     setImageFile(null);
+
+//     // Fetch menu items
+//     dispatch(fetchMenu());
+
+//   } catch (error) {
+//     alert(error.response?.data?.message || "Error uploading image");
+//   }
+// };
+
+
+// // Edit MENU
+
+// const [editMenu, setEditMenu] = useState(null);
+
+// const handleEdit = (item) => {
+//   setEditMenu(item);
+//   setNewItem({
+//     name: item.name,
+//     price: item.price,
+//     category: item.category,
+//     description: item.description,
+//     status: item.status,
+//   });
+//   setImageFile(null);
+// };
+
+
+// // Update MENU
+// const updateMenuItem = async (e) => {
+//   e.preventDefault();
+//   try {
+//     const formData = new FormData();
+//     formData.append("name", newItem.name);
+//     formData.append("price", newItem.price);
+//     formData.append("category", newItem.category);
+//     formData.append("description", newItem.description);
+//     formData.append("status", newItem.status);
+//     formData.append("image", imageFile); // file
+
+//     const res = await axios.put(
+//       `http://localhost:8000/api/menu/update/${editMenu.id}`,
+//       formData,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           "Content-Type": "multipart/form-data",
+//         },
+//       }
+
+//     );
+//     console.log(res.data);
+//     setEditMenu(null);
+//     setNewItem({
+//       name: "",
+//       price: "",
+//       category: "Main",
+//       description: "",
+//       status: "Available",
+//     });
+//     setImageFile(null);
+//     dispatch(fetchMenu());
+//     alert(res.data.message);
+    
+//   } catch (error) {
+//      alert(error.response?.data?.message || "Error uploading image");
+//   }
+// }
+
+
+// // Delete MENU
+// const handleDelete = async (id) => {
+//   try {
+//     const res = await axios.delete(`http://localhost:8000/api/menu/delete/${id}`, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     console.log(res.data);
+  
+//     // Fetch menu items
+//     dispatch(fetchMenu());
+//   } catch (error) {
+//     alert(error.response.data.message);
+//   }
+// };
+
+
+
+
+//   // Category color badge
+//   const getCategoryColor = (cat) => {
+//     switch (cat) {
+//       case "Main":
+//         return "bg-blue-100 text-blue-700";
+//       case "Drink":
+//         return "bg-red-100 text-red-700";
+//       case "Dessert":
+//         return "bg-purple-100 text-purple-700";
+//       default:
+//         return "bg-gray-100 text-gray-700";
+//     }
+//   };
+
+//   // Status badge
+//   const getStatusColor = (s) => {
+//     return s === "Available"
+//       ? "bg-green-100 text-green-700"
+//       : "bg-red-100 text-red-700";
+//   };
+
+
+//   return (
+//     <div className="p-6">
+//       <h1 className="text-3xl font-bold mb-6 text-gray-800">
+//         Menu Items <span className="text-gray-500">({menuItems.length})</span>
+//       </h1>
+
+//       {/* Add / Edit Menu Form */}
+//       <form
+//         onSubmit={addMenuItem}
+//         className="mb-8 p-6 bg-white rounded-xl shadow border max-w-2xl"
+//       >
+//         <h2 className="text-xl font-semibold mb-4 text-gray-800">
+//           {/* {editingId ? "Edit Menu Item" : "Add New Menu Item"} */}
+//           "Add New Menu Item"
+//         </h2>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//           <input
+//             type="text"
+//             placeholder="Item Name"
+//             className="border rounded px-3 py-2"
+//             value={newItem.name}
+//             onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+//           />
+
+//           <input
+//             type="number"
+//             placeholder="Price"
+//             className="border rounded px-3 py-2"
+//             value={newItem.price}
+//             onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+//           />
+
+//           <select
+//             className="border rounded px-3 py-2"
+//             value={newItem.category}
+//             onChange={(e) =>
+//               setNewItem({ ...newItem, category: e.target.value })
+//             }
+//           >
+//             <option>Main</option>
+//             <option>Drink</option>
+//             <option>Dessert</option>
+//           </select>
+
+//           <select
+//             className="border rounded px-3 py-2"
+//             value={newItem.status}
+//             onChange={(e) =>
+//               setNewItem({ ...newItem, status: e.target.value })
+//             }
+//           >
+//             <option>Available</option>
+//             <option>Not Available</option>
+//           </select>
+
+//           <input
+//             type="file"
+//             placeholder="Image Upload"
+//             className="border rounded px-3 py-2 col-span-2"
+//             value={newItem.image}
+//             onChange={(e) =>
+//               setImageFile(e.target.files[0])
+//             }
+//           />
+
+//           <textarea
+//             placeholder="Description"
+//             className="border rounded px-3 py-2 col-span-2"
+//             value={newItem.description}
+//             onChange={(e) =>
+//               setNewItem({ ...newItem, description: e.target.value })
+//             }
+//           ></textarea>
+//         </div>
+
+//         <button
+//           type="submit"
+//           className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+//         >
+//           {/* {editingId ? "Update Item" : "Add Menu Item"} */}
+//           Add Menu Item
+//         </button>
+//       </form>
+
+//       {/* Menu Table */}
+//       <div className="overflow-hidden rounded-xl shadow bg-white border">
+//         <table className="w-full border-collapse">
+//           <thead>
+//             <tr className="bg-gray-50 border-b">
+//               <th className="p-4">Image</th>
+//               <th className="p-4 text-left">Name</th>
+//               <th className="p-4 text-left">Price</th>
+//               <th className="p-4 text-left">Category</th>
+//               <th className="p-4 text-left">Status</th>
+//               <th className="p-4 text-left">Actions</th>
+//             </tr>
+//           </thead>
+
+//           <tbody>
+//             {menuItems.map((item) => (
+//               <tr key={item.id} className="border-b hover:bg-gray-50">
+//                 <td className="p-4">
+//                   <img
+//                     src={item.image}
+//                     alt="food"
+//                     className="w-14 h-14 rounded object-cover"
+//                   />
+//                 </td>
+
+//                 <td className="p-4 font-semibold text-gray-800">
+//                   {item.name}
+//                   {/* <p className="text-gray-500 text-sm">{item.description}</p> */}
+//                 </td>
+
+//                 <td className="p-4 font-medium">${item.price}</td>
+
+//                 <td className="p-4">
+//                   <span
+//                     className={`px-3 py-1 text-xs rounded-full font-medium ${getCategoryColor(
+//                       item.category
+//                     )}`}
+//                   >
+//                     {item.category}
+//                   </span>
+//                 </td>
+
+//                 <td className="p-4">
+//                   <span
+//                     className={`px-3 py-1 text-xs rounded-full font-medium ${getStatusColor(
+//                       item.status
+//                     )}`}
+//                   >
+//                     {item.status}
+//                   </span>
+//                 </td>
+
+//                 <td className="p-4 flex gap-2">
+//                   <button
+//                     onClick={() => handleEdit(item)}
+//                     className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm"
+//                   >
+//                     Edit
+//                   </button>
+
+//                   <button
+//                     onClick={() => handleDelete(item.id)}
+//                     className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+//                   >
+//                     Delete
+//                   </button>
+//                 </td>
+//               </tr>
+//             ))}
+
+//             {menuItems.length === 0 && (
+//               <tr>
+//                 <td className="p-4 text-center text-gray-500" colSpan="6">
+//                   No menu items found.
+//                 </td>
+//               </tr>
+//             )}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Menu;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMenu } from "../../redux/slices/product.Slice";
 
 function Menu() {
-  // Mock data
-  const menuItems = [
-    { id: 1, name: 'Pizza', price: 12, category: 'Main' },
-    { id: 2, name: 'Coke', price: 2, category: 'Drink' },
-    // Add more items
-  ];
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const menuItems = useSelector((state) => state.menu.items);
+
+  const [newItem, setNewItem] = useState({
+    name: "",
+    price: "",
+    category: "Main",
+    description: "",
+    status: "Available",
+  });
+  const [imageFile, setImageFile] = useState(null);
+  const [editMenu, setEditMenu] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchMenu());
+  }, [dispatch]);
+
+  // ✅ Add or Update Menu
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || (!imageFile && !editMenu)) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("name", newItem.name);
+      formData.append("price", newItem.price);
+      formData.append("category", newItem.category);
+      formData.append("description", newItem.description);
+      formData.append("status", newItem.status);
+      if (imageFile) formData.append("image", imageFile);
+
+      if (editMenu) {
+        // Update menu
+        await axios.put(
+          `http://localhost:8000/api/menu/update/${editMenu._id}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+              
+            },
+          }
+        );
+        alert("Menu updated successfully!");
+      } else {
+        // Add menu
+        await axios.post(
+          "http://localhost:8000/api/menu/add",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        alert("Menu added successfully!");
+      }
+
+      // Reset form
+      setNewItem({
+        name: "",
+        price: "",
+        category: "Main",
+        description: "",
+        status: "Available",
+      });
+      setImageFile(null);
+      setEditMenu(null);
+
+      // Refresh menu table
+      dispatch(fetchMenu());
+    } catch (error) {
+      alert(error.response?.data?.message || "Error processing request");
+    }
+  };
+
+  // ✅ Edit menu item
+  const handleEdit = (item) => {
+    setEditMenu(item);
+    setNewItem({
+      name: item.name,
+      price: item.price,
+      category: item.category,
+      description: item.description,
+      status: item.status,
+    });
+    setImageFile(null);
+  };
+
+  // ✅ Delete menu item
+  const handleDelete = async (itemId) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+
+    try {
+      await axios.delete(`http://localhost:8000/api/menu/delete/${itemId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      alert("Menu deleted successfully!");
+      dispatch(fetchMenu());
+    } catch (error) {
+      alert(error.response?.data?.message || "Error deleting item");
+    }
+  };
+
+  // Category & Status badges
+  const getCategoryColor = (cat) => {
+    switch (cat) {
+      case "Main":
+        return "bg-blue-100 text-blue-700";
+      case "Drink":
+        return "bg-red-100 text-red-700";
+      case "Dessert":
+        return "bg-purple-100 text-purple-700";
+      default:
+        return "bg-gray-100 text-gray-700";
+    }
+  };
+  const getStatusColor = (s) =>
+    s === "Available" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700";
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Menu Items ({menuItems.length})</h1>
-      <table className="w-full bg-white rounded shadow">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="p-4 text-left">ID</th>
-            <th className="p-4 text-left">Name</th>
-            <th className="p-4 text-left">Price</th>
-            <th className="p-4 text-left">Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {menuItems.map(item => (
-            <tr key={item.id} className="border-t">
-              <td className="p-4">{item.id}</td>
-              <td className="p-4">{item.name}</td>
-              <td className="p-4">${item.price}</td>
-              <td className="p-4">{item.category}</td>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">
+        Menu Items <span className="text-gray-500">({menuItems.length})</span>
+      </h1>
+
+      {/* Add / Edit Menu Form */}
+      <form
+        onSubmit={handleSubmit}
+        className="mb-8 p-6 bg-white rounded-xl shadow border max-w-2xl"
+      >
+        <h2 className="text-xl font-semibold mb-4 text-gray-800">
+          {editMenu ? "Edit Menu Item" : "Add New Menu Item"}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            placeholder="Item Name"
+            className="border rounded px-3 py-2"
+            value={newItem.name}
+            onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
+          />
+
+          <input
+            type="number"
+            placeholder="Price"
+            className="border rounded px-3 py-2"
+            value={newItem.price}
+            onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+          />
+
+          <select
+            className="border rounded px-3 py-2"
+            value={newItem.category}
+            onChange={(e) =>
+              setNewItem({ ...newItem, category: e.target.value })
+            }
+          >
+            <option>Fastfood</option>
+            <option>Drink</option>
+            <option>Dessert</option>
+            <option>Sweet</option>
+            <option>Pizza</option>
+             
+          </select>
+
+          <select
+            className="border rounded px-3 py-2"
+            value={newItem.status}
+            onChange={(e) =>
+              setNewItem({ ...newItem, status: e.target.value })
+            }
+          >
+            <option>Available</option>
+            <option>Not Available</option>
+          </select>
+
+          <input
+            type="file"
+            className="border rounded px-3 py-2 col-span-2"
+            onChange={(e) => setImageFile(e.target.files[0])}
+          />
+
+          <textarea
+            placeholder="Description"
+            className="border rounded px-3 py-2 col-span-2"
+            value={newItem.description}
+            onChange={(e) =>
+              setNewItem({ ...newItem, description: e.target.value })
+            }
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
+          {editMenu ? "Update Menu Item" : "Add Menu Item"}
+        </button>
+      </form>
+
+      {/* Menu Table */}
+      <div className="overflow-hidden rounded-xl shadow bg-white border">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-gray-50 border-b">
+              <th className="p-4">Image</th>
+              <th className="p-4 text-left">Name</th>
+              <th className="p-4 text-left">Price</th>
+              <th className="p-4 text-left">Category</th>
+              <th className="p-4 text-left">Status</th>
+              <th className="p-4 text-left">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {menuItems.map((item) => (
+              <tr key={item.id} className="border-b hover:bg-gray-50">
+                <td className="p-4">
+                  <img
+                    src={item.image}
+                    alt="food"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                </td>
+
+                <td className="p-4 font-semibold text-gray-800">{item.name}</td>
+                <td className="p-4 font-medium">${item.price}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-3 py-1 text-xs rounded-full font-medium ${getCategoryColor(
+                      item.category
+                    )}`}
+                  >
+                    {item.category}
+                  </span>
+                </td>
+                <td className="p-4">
+                  <span
+                    className={`px-3 py-1 text-xs rounded-full font-medium ${getStatusColor(
+                      item.status
+                    )}`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+                <td className="p-4 flex gap-2">
+                  <button
+                    onClick={() => handleEdit(item)}
+                    className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+
+            {menuItems.length === 0 && (
+              <tr>
+                <td className="p-4 text-center text-gray-500" colSpan="6">
+                  No menu items found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

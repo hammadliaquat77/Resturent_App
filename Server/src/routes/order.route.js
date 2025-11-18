@@ -7,13 +7,13 @@ import adminMiddleware from "../middleware/admim.middleware.js";
 const router = express.Router();
 
 // Admin Routes
-router.get("/all", authMiddleware, adminMiddleware, getAllOrders);
+router.get("/all", authMiddleware, adminMiddleware, getAllOrders); 
 router.put("/update/:id", authMiddleware, adminMiddleware, getUpdateOrderStatus);
 
 
 // Customer Routes
-router.post("/place", authMiddleware, placeOrder);
-router.get("/my", authMiddleware, getMyOrders);
+router.post("/place", authMiddleware, placeOrder); 
+router.get("/my", authMiddleware, getMyOrders); 
 router.delete("/cancel/:id", authMiddleware,  getCancelOrderStatus);
 
 

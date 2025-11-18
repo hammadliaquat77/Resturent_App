@@ -87,6 +87,16 @@ const logOut = async (req, res) => {
     }
 }
 
-export {registerUser, loginUser, logOut};
+
+const getAllUser = async (req, res) => {
+    try {
+        const allUser = await User.find();
+        res.status(200).json({ success: true, allUser });
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+export {registerUser, loginUser, logOut, getAllUser};
 
 

@@ -1,7 +1,7 @@
 Staff Routes
 
-1==> user auth route complete frontnd + Bakend
-2==> order route complete without admin oder
+1==> user auth route      completed frontnd + Bakend
+2==> order route          completed  frontnd + Bakend
 3==> menu route completed only user without admin
 4==> cart route bi almost complete without admin
 5==> 
@@ -12,6 +12,6 @@ Admin Routes
 
 1==> staff router
 2==> reservation route
-3==> order route
+3==> order route            completed frontnd + Bakend
 4==> menu route 
 5==> inventry route
