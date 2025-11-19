@@ -33,10 +33,10 @@ const router = express.Router();
 router.post("/add", authMiddleware, adminMiddleware, upload.single("image"), addMenuItems);
 router.delete("/delete/:id", authMiddleware, adminMiddleware, deleteItems);
 router.put("/update/:id", authMiddleware, adminMiddleware, upload.single("image"), updatedMenu);
-router.get("/category/:category", authMiddleware,  getMenuByCategory);
 
 // User
 router.get("/all", getAllMenu);
+router.get("/category/:category", authMiddleware,  getMenuByCategory);
 router.get("/single/:id", authMiddleware,  singleFoodItem);
 
 

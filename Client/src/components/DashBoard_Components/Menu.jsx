@@ -1,372 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import {useSelector, useDispatch} from "react-redux";
-// import { fetchMenu } from "../../redux/slices/product.Slice";
-
-
-// function Menu() {
-
-//   const token = localStorage.getItem("token");
-  
-//   const dispatch = useDispatch();
-//   const menuItems = useSelector(state => state.menu.items);
-
-//   // console.log(menuItems);
-
-// // Fetch all menu items
-
-//   useEffect(() => {
-//     dispatch(fetchMenu());
-//   }, [dispatch]);
-
-  
-//   // Add MENU
-//     const [newItem, setNewItem] = useState({
-//     name: "",
-//     price: "",
-//     category: "Main",
-//     description: "",
-//     image: "",
-//     status: "Available",
-//   });
-
-//   const [imageFile, setImageFile] = useState(null);
-
-//   const addMenuItem = async (e) => {
-//   e.preventDefault();
-
-//   if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || !imageFile) {
-//     alert("Please fill in all the required fields.");
-//     return;
-//   }
-
-//   try {
-//     const formData = new FormData();
-//     formData.append("name", newItem.name);
-//     formData.append("price", newItem.price);
-//     formData.append("category", newItem.category);
-//     formData.append("description", newItem.description);
-//     formData.append("status", newItem.status);
-//     formData.append("image", imageFile); // file
-
-//     const res = await axios.post("http://localhost:8000/api/menu/add", formData, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "multipart/form-data",
-//       },
-//     });
-
-//     console.log(res.data);
-
-//     // Reset form
-//     setNewItem({
-//       name: "",
-//       price: "",
-//       category: "Main",
-//       description: "",
-//       status: "Available",
-//     });
-//     setImageFile(null);
-
-//     // Fetch menu items
-//     dispatch(fetchMenu());
-
-//   } catch (error) {
-//     alert(error.response?.data?.message || "Error uploading image");
-//   }
-// };
-
-
-// // Edit MENU
-
-// const [editMenu, setEditMenu] = useState(null);
-
-// const handleEdit = (item) => {
-//   setEditMenu(item);
-//   setNewItem({
-//     name: item.name,
-//     price: item.price,
-//     category: item.category,
-//     description: item.description,
-//     status: item.status,
-//   });
-//   setImageFile(null);
-// };
-
-
-// // Update MENU
-// const updateMenuItem = async (e) => {
-//   e.preventDefault();
-//   try {
-//     const formData = new FormData();
-//     formData.append("name", newItem.name);
-//     formData.append("price", newItem.price);
-//     formData.append("category", newItem.category);
-//     formData.append("description", newItem.description);
-//     formData.append("status", newItem.status);
-//     formData.append("image", imageFile); // file
-
-//     const res = await axios.put(
-//       `http://localhost:8000/api/menu/update/${editMenu.id}`,
-//       formData,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           "Content-Type": "multipart/form-data",
-//         },
-//       }
-
-//     );
-//     console.log(res.data);
-//     setEditMenu(null);
-//     setNewItem({
-//       name: "",
-//       price: "",
-//       category: "Main",
-//       description: "",
-//       status: "Available",
-//     });
-//     setImageFile(null);
-//     dispatch(fetchMenu());
-//     alert(res.data.message);
-    
-//   } catch (error) {
-//      alert(error.response?.data?.message || "Error uploading image");
-//   }
-// }
-
-
-// // Delete MENU
-// const handleDelete = async (id) => {
-//   try {
-//     const res = await axios.delete(`http://localhost:8000/api/menu/delete/${id}`, {
-//       headers: { Authorization: `Bearer ${token}` },
-//     });
-//     console.log(res.data);
-  
-//     // Fetch menu items
-//     dispatch(fetchMenu());
-//   } catch (error) {
-//     alert(error.response.data.message);
-//   }
-// };
-
-
-
-
-//   // Category color badge
-//   const getCategoryColor = (cat) => {
-//     switch (cat) {
-//       case "Main":
-//         return "bg-blue-100 text-blue-700";
-//       case "Drink":
-//         return "bg-red-100 text-red-700";
-//       case "Dessert":
-//         return "bg-purple-100 text-purple-700";
-//       default:
-//         return "bg-gray-100 text-gray-700";
-//     }
-//   };
-
-//   // Status badge
-//   const getStatusColor = (s) => {
-//     return s === "Available"
-//       ? "bg-green-100 text-green-700"
-//       : "bg-red-100 text-red-700";
-//   };
-
-
-//   return (
-//     <div className="p-6">
-//       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-//         Menu Items <span className="text-gray-500">({menuItems.length})</span>
-//       </h1>
-
-//       {/* Add / Edit Menu Form */}
-//       <form
-//         onSubmit={addMenuItem}
-//         className="mb-8 p-6 bg-white rounded-xl shadow border max-w-2xl"
-//       >
-//         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-//           {/* {editingId ? "Edit Menu Item" : "Add New Menu Item"} */}
-//           "Add New Menu Item"
-//         </h2>
-
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//           <input
-//             type="text"
-//             placeholder="Item Name"
-//             className="border rounded px-3 py-2"
-//             value={newItem.name}
-//             onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
-//           />
-
-//           <input
-//             type="number"
-//             placeholder="Price"
-//             className="border rounded px-3 py-2"
-//             value={newItem.price}
-//             onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-//           />
-
-//           <select
-//             className="border rounded px-3 py-2"
-//             value={newItem.category}
-//             onChange={(e) =>
-//               setNewItem({ ...newItem, category: e.target.value })
-//             }
-//           >
-//             <option>Main</option>
-//             <option>Drink</option>
-//             <option>Dessert</option>
-//           </select>
-
-//           <select
-//             className="border rounded px-3 py-2"
-//             value={newItem.status}
-//             onChange={(e) =>
-//               setNewItem({ ...newItem, status: e.target.value })
-//             }
-//           >
-//             <option>Available</option>
-//             <option>Not Available</option>
-//           </select>
-
-//           <input
-//             type="file"
-//             placeholder="Image Upload"
-//             className="border rounded px-3 py-2 col-span-2"
-//             value={newItem.image}
-//             onChange={(e) =>
-//               setImageFile(e.target.files[0])
-//             }
-//           />
-
-//           <textarea
-//             placeholder="Description"
-//             className="border rounded px-3 py-2 col-span-2"
-//             value={newItem.description}
-//             onChange={(e) =>
-//               setNewItem({ ...newItem, description: e.target.value })
-//             }
-//           ></textarea>
-//         </div>
-
-//         <button
-//           type="submit"
-//           className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-//         >
-//           {/* {editingId ? "Update Item" : "Add Menu Item"} */}
-//           Add Menu Item
-//         </button>
-//       </form>
-
-//       {/* Menu Table */}
-//       <div className="overflow-hidden rounded-xl shadow bg-white border">
-//         <table className="w-full border-collapse">
-//           <thead>
-//             <tr className="bg-gray-50 border-b">
-//               <th className="p-4">Image</th>
-//               <th className="p-4 text-left">Name</th>
-//               <th className="p-4 text-left">Price</th>
-//               <th className="p-4 text-left">Category</th>
-//               <th className="p-4 text-left">Status</th>
-//               <th className="p-4 text-left">Actions</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             {menuItems.map((item) => (
-//               <tr key={item.id} className="border-b hover:bg-gray-50">
-//                 <td className="p-4">
-//                   <img
-//                     src={item.image}
-//                     alt="food"
-//                     className="w-14 h-14 rounded object-cover"
-//                   />
-//                 </td>
-
-//                 <td className="p-4 font-semibold text-gray-800">
-//                   {item.name}
-//                   {/* <p className="text-gray-500 text-sm">{item.description}</p> */}
-//                 </td>
-
-//                 <td className="p-4 font-medium">${item.price}</td>
-
-//                 <td className="p-4">
-//                   <span
-//                     className={`px-3 py-1 text-xs rounded-full font-medium ${getCategoryColor(
-//                       item.category
-//                     )}`}
-//                   >
-//                     {item.category}
-//                   </span>
-//                 </td>
-
-//                 <td className="p-4">
-//                   <span
-//                     className={`px-3 py-1 text-xs rounded-full font-medium ${getStatusColor(
-//                       item.status
-//                     )}`}
-//                   >
-//                     {item.status}
-//                   </span>
-//                 </td>
-
-//                 <td className="p-4 flex gap-2">
-//                   <button
-//                     onClick={() => handleEdit(item)}
-//                     className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm"
-//                   >
-//                     Edit
-//                   </button>
-
-//                   <button
-//                     onClick={() => handleDelete(item.id)}
-//                     className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
-//                   >
-//                     Delete
-//                   </button>
-//                 </td>
-//               </tr>
-//             ))}
-
-//             {menuItems.length === 0 && (
-//               <tr>
-//                 <td className="p-4 text-center text-gray-500" colSpan="6">
-//                   No menu items found.
-//                 </td>
-//               </tr>
-//             )}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Menu;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -377,12 +8,15 @@ function Menu() {
   const dispatch = useDispatch();
   const menuItems = useSelector((state) => state.menu.items);
 
+  // console.log(menuItems);
+  
+
   const [newItem, setNewItem] = useState({
     name: "",
     price: "",
-    category: "Main",
+    category: "",
     description: "",
-    status: "Available",
+    isAvailable: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [editMenu, setEditMenu] = useState(null);
@@ -395,7 +29,7 @@ function Menu() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || (!imageFile && !editMenu)) {
+    if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || newItem.isAvailable === "" || (!imageFile && !editMenu)) {
       alert("Please fill in all the required fields.");
       return;
     }
@@ -406,7 +40,7 @@ function Menu() {
       formData.append("price", newItem.price);
       formData.append("category", newItem.category);
       formData.append("description", newItem.description);
-      formData.append("status", newItem.status);
+      formData.append("isAvailable", newItem.isAvailable);
       if (imageFile) formData.append("image", imageFile);
 
       if (editMenu) {
@@ -442,9 +76,9 @@ function Menu() {
       setNewItem({
         name: "",
         price: "",
-        category: "Main",
+        category: "",
         description: "",
-        status: "Available",
+        isAvailable: "",
       });
       setImageFile(null);
       setEditMenu(null);
@@ -464,7 +98,7 @@ function Menu() {
       price: item.price,
       category: item.category,
       description: item.description,
-      status: item.status,
+      isAvailable: item.isAvailable,
     });
     setImageFile(null);
   };
@@ -549,13 +183,13 @@ function Menu() {
 
           <select
             className="border rounded px-3 py-2"
-            value={newItem.status}
+            value={newItem.isAvailable}
             onChange={(e) =>
-              setNewItem({ ...newItem, status: e.target.value })
+              setNewItem({ ...newItem, isAvailable: e.target.value  === "true" })
             }
           >
-            <option>Available</option>
-            <option>Not Available</option>
+            <option value="true">Available</option>
+            <option value="false">Not Available</option>
           </select>
 
           <input
@@ -608,7 +242,7 @@ function Menu() {
                 </td>
 
                 <td className="p-4 font-semibold text-gray-800">{item.name}</td>
-                <td className="p-4 font-medium">${item.price}</td>
+                <td className="p-4 font-medium">Rs.{item.price}</td>
                 <td className="p-4">
                   <span
                     className={`px-3 py-1 text-xs rounded-full font-medium ${getCategoryColor(
@@ -624,7 +258,8 @@ function Menu() {
                       item.status
                     )}`}
                   >
-                    {item.status}
+                    {item.isAvailable ? "Available" : "Not Available"}
+
                   </span>
                 </td>
                 <td className="p-4 flex gap-2">

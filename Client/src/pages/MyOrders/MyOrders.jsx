@@ -11,6 +11,9 @@ function MyOrders() {
       const res = await axios.get("http://localhost:8000/api/order/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(res.data.myOrders);
+      // console.log(res.data.myOrders.menuitems);
+      
       setOrders(res.data.myOrders);
     } catch (error) {
       console.log("Orders fetch error:", error.message);
@@ -116,9 +119,9 @@ function MyOrders() {
                         className="flex justify-between text-gray-700 text-sm py-1 border-b border-gray-100"
                       >
                         <span>
-                          {item.menuitems.name} x {item.quantity}
+                          {item.menuitems?.name} x {item?.quantity}
                         </span>
-                        <span>Rs. {item.menuitems.price * item.quantity}</span>
+                        <span>Rs. {item.menuitems?.price * item?.quantity}</span>
                       </div>
                     ))}
                   </div>

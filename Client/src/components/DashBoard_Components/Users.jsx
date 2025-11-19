@@ -9,7 +9,7 @@ function Users() {
 
   // Filtered Customer Role Users
   const Customer = users.filter(user => user.role === "customer");
-  console.log(Customer);
+  // console.log(Customer);
   
   useEffect(() => {
     disPatch(fetchUsers());    

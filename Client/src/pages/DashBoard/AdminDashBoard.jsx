@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '../../components/DashBoard_Components/Sidebar';
 import Dashboard from '../../components/DashBoard_Components/Dashboard';
 import Users from '../../components/DashBoard_Components/Users';
 import Orders from '../../components/DashBoard_Components/Orders';
 import Menu from '../../components/DashBoard_Components/Menu';
+import Staffs from '../../components/DashBoard_Components/Staffs';
+import Inventory from '../../components/DashBoard_Components/Inventry';
 
 function AdminDashBoard() {
-  const [activeTab, setActiveTab] = React.useState('dashboard');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   const renderContent = () => {
     switch (activeTab) {
@@ -14,6 +16,8 @@ function AdminDashBoard() {
       case 'users': return <Users />;
       case 'orders': return <Orders />;
       case 'menu': return <Menu />;
+      case 'staffs': return <Staffs />;
+      case 'inventry': return <Inventory/>
       default: return <Dashboard />;
     }
   };

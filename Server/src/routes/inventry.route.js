@@ -11,4 +11,5 @@ router.get("/all", authMiddleware, adminMiddleware, getAllInventry);
 router.get("/lowstock", authMiddleware, adminMiddleware, getLowStockItem);
 
 
+
 export default router;

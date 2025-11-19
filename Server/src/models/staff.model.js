@@ -7,7 +7,7 @@ const staffSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["chef", "waiter", "manager"],
+        enum: ["chef", "waiter", "manager", "delivery"],
         default: "chef",
         required: true
     },
@@ -21,7 +21,9 @@ const staffSchema = new mongoose.Schema({
     contact: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        min: 11,
+        max: 11,
     }
 
 }, {timestamps: true})

@@ -15,7 +15,7 @@ function Orders() {
       const res = await axios.get("http://localhost:8000/api/order/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(res.data.allOrders);
+      // console.log(res.data.allOrders);
 
       setOrders(res.data.allOrders);
     } catch (error) {
@@ -38,10 +38,28 @@ function Orders() {
       setOrders((prev) =>
         prev.map((order) => (order._id === Id ? updatedOrder : order))
       );
+
+      alert(res.data.message);
+      fetchAllOrders();
+
     } catch (error) {
       console.log("Orders fetch error:", error.message);
     }
   };
+
+// Delete Order Admin
+  const handleDeleteOrder = async (id)=> {
+   try {
+       const res = await axios.delete(`http://localhost:8000/api/order/delete/${id}`, {
+           headers: { Authorization: `Bearer ${token}` }
+       }) 
+
+       alert(res.data.message);
+       fetchAllOrders();
+   } catch (error) {
+      alert(error.response?.data?.message || "Failed to delete order");
+   }
+  }
 
 
   const getStatusColor = (status) => {
@@ -59,10 +77,6 @@ function Orders() {
     }
   };
 
-
-  const handleDelete = (id) => {
-    setOrders((prev) => prev.filter((order) => order._id !== id));
-  };
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -110,14 +124,15 @@ function Orders() {
                 <ul className="mt-1 ml-4 list-disc">
                   {order.orderItems.map((item) => (
                     <li key={item._id}>
-                      {item.menuitems.name} x {item.quantity}
+                      {item.menuitems?.name} x {item.quantity}
+
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div className="mb-3 font-semibold text-gray-800">
-                Total: ${order.totalPrice}
+                Total: Rs.{order.totalPrice}
               </div>
 
               <div className="flex items-center justify-between">
@@ -134,7 +149,7 @@ function Orders() {
 
 
                 <button
-                  onClick={() => handleDelete(order._id)}
+                  onClick={() => handleDeleteOrder(order._id)}
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
                 >
                   Delete

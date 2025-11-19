@@ -10,6 +10,10 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { items, loading } = useSelector((state) => state.cart);
 
+
+  // console.log(items[0]?.productId.price);
+  
+
   useEffect(() => {
     dispatch(fetchCart());
   }, [dispatch]);
@@ -30,7 +34,7 @@ const Cart = () => {
     }
   };
 
-  const totalPrice = items.reduce((sum, item) => sum + item.productId.price * item.quantity, 0);
+  const totalPrice = items.reduce((sum, item) => sum + item.productId?.price * item.quantity, 0);
 
   return (
     <div className="max-w-5xl mx-auto p-6 pt-24">
@@ -52,18 +56,18 @@ const Cart = () => {
               {/* Image */}
               <div className="flex items-center gap-4">
                 <img
-                  src={item.productId.image}
-                  alt={item.productId.name}
+                  src={item?.productId?.image}
+                  alt={item?.productId?.name}
                   className="w-20 h-20 object-cover rounded-md"
                 />
 
                 {/* Info */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">
-                    {item.productId.name}
+                    {item?.productId?.name}
                   </h3>
                   <p className="text-gray-600">
-                    Rs {item.productId.price} × {item.quantity}
+                    Rs {item?.productId?.price} × {item.quantity}
                   </p>
                 </div>
               </div>
@@ -71,7 +75,7 @@ const Cart = () => {
               {/* Qty + Remove */}
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => handleQtyChange(item.productId._id, item.quantity - 1)}
+                  onClick={() => handleQtyChange(item?.productId._id, item.quantity - 1)}
                   className="px-3 py-1 bg-gray-200 rounded-md text-lg"
                 >
                   -
@@ -80,7 +84,7 @@ const Cart = () => {
                 <span className="text-lg font-semibold">{item.quantity}</span>
 
                 <button
-                  onClick={() => handleQtyChange(item.productId._id, item.quantity + 1)}
+                  onClick={() => handleQtyChange(item?.productId._id, item.quantity + 1)}
                   className="px-3 py-1 bg-gray-200 rounded-md text-lg"
                 >
                   +

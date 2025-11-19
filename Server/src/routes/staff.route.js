@@ -6,6 +6,7 @@ import adminMiddleware from "../middleware/admim.middleware.js";
 
 const router = express.Router();
 
+// Admin Routes
 router.post("/add", authMiddleware, adminMiddleware, addStaff);
 router.get("/all", authMiddleware, adminMiddleware, getAllStaff);
 router.delete("/delete/:id", authMiddleware, adminMiddleware, getDeleteStaff);

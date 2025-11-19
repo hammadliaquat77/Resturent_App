@@ -279,6 +279,8 @@ import { FiMenu, FiX } from "react-icons/fi"; // ✅ Icons for mobile toggle
 import {useSelector, useDispatch } from 'react-redux';    
 import { fetchCart } from "../redux/slices/cart.Slice";
 
+// import  Logo  from "../assets/Navbar/Logo.png";
+
 import axios from "axios";
 
 const Navbar = () => {
@@ -329,6 +331,8 @@ useEffect(() => {
             <span className="ml-2 font-bold text-xl text-gray-900">
               TasteNest
             </span>
+            {/* <img src={Logo} alt="Logo" 
+            className="h-12 w-32 rounded-2xl" /> */}
           </div>
 
           {/* Menu (Desktop) */}

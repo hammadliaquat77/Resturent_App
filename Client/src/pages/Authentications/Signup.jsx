@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
+import { toast } from "react-toastify";
 
 function Signup() {
 
@@ -26,13 +26,15 @@ function Signup() {
     try {
       const response = await axios.post("http://localhost:8000/api/auth/register", deta);
       console.log("Data==>", response.data);
-      alert("Signup Successfully");
+      // alert("Signup Successfully");
+      toast.success("Signup successful!");
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.newUser.role);
       navigate("/login");
     } catch (error) {
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   }
 

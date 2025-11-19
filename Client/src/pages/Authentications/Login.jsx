@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -28,11 +29,13 @@ const handleSubmit = async (e)=> {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.user.role);
 
-      alert("Login Successfully");
+      // alert("Login Successfully");
+      toast.success("Login successful!"); 
       navigate("/");
       
    } catch (error) {
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
+      toast.error(error.response.data.message); 
    }
 }
 
