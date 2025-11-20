@@ -2,80 +2,80 @@ import { Order } from "../models/order.model.js";
 import { Inventry } from "../models/inventery.model.js";
 
 
-const placeOrder = async (req, res) => {
-    try {
-        const {  orderItems, totalPrice, paymentType, address } = req.body;
-        
-        const newOrder = await Order.create({
-            user: req.user._id,
-            orderItems,
-            totalPrice,
-            paymentType,
-            address
-        })
-
-        for(const item of orderItems) {
-            const inventryItem = await Inventry.findOne({ itemName });
-            if (inventryItem) {
-                inventryItem.quantity -= item.quantity;
-                 if (inventryItem.quantity <= 0) {
-                    inventryItem.quantity = 0;
-                }
-                await inventryItem.save();
-            }
-        }
-
-        res.status(201).json({ 
-            success: true, 
-            message: "Order placed successfully",
-            newOrder 
-        });
-         
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-}
-
-
-
 // const placeOrder = async (req, res) => {
 //     try {
-//         const { orderItems, totalPrice, paymentType, address } = req.body;
-
+//         const {  orderItems, totalPrice, paymentType, address } = req.body;
+        
 //         const newOrder = await Order.create({
 //             user: req.user._id,
 //             orderItems,
 //             totalPrice,
 //             paymentType,
 //             address
-//         });
+//         })
 
-//         for (const item of orderItems) {
-//             // Optional chaining to avoid undefined error
-//             const itemName = item.menuitems?.name;
-//             if (!itemName) {
-//                 console.warn("Item name missing in order item:", item);
-//                 continue; // skip if no name
-//             }
-
-//             const inventryItem = await Inventry.findOne({ itemName: itemName.toLowerCase() });
+//         for(const item of orderItems) {
+//             const inventryItem = await Inventry.findOne({ itemName });
 //             if (inventryItem) {
-//                 inventryItem.quantity -= Number(item.quantity);
-//                 if (inventryItem.quantity < 0) inventryItem.quantity = 0;
+//                 inventryItem.quantity -= item.quantity;
+//                  if (inventryItem.quantity <= 0) {
+//                     inventryItem.quantity = 0;
+//                 }
 //                 await inventryItem.save();
 //             }
 //         }
 
-//         res.status(201).json({
-//             success: true,
+//         res.status(201).json({ 
+//             success: true, 
 //             message: "Order placed successfully",
-//             newOrder
+//             newOrder 
 //         });
-
+         
 //     } catch (error) {
-//         res.status(500).json({ message: error.message });
+//         res.status(500).json({ message: error.message })
 //     }
-// };
+// }
+
+
+
+const placeOrder = async (req, res) => {
+    try {
+        const { orderItems, totalPrice, paymentType, address } = req.body;
+
+        const newOrder = await Order.create({
+            user: req.user._id,
+            orderItems,
+            totalPrice,
+            paymentType,
+            address
+        });
+
+        for (const item of orderItems) {
+            // Optional chaining to avoid undefined error
+            const itemName = item.menuitems?.name;
+            if (!itemName) {
+                console.warn("Item name missing in order item:", item);
+                continue; // skip if no name
+            }
+
+            const inventryItem = await Inventry.findOne({ itemName: itemName.toLowerCase() });
+            if (inventryItem) {
+                inventryItem.quantity -= Number(item.quantity);
+                if (inventryItem.quantity < 0) inventryItem.quantity = 0;
+                await inventryItem.save();
+            }
+        }
+
+        res.status(201).json({
+            success: true,
+            message: "Order placed successfully",
+            newOrder
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 
 

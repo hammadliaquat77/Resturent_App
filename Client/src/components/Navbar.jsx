@@ -275,6 +275,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"; // ✅ React Router link for SPA navigation
 import { FiMenu, FiX } from "react-icons/fi"; // ✅ Icons for mobile toggle
+import { LuLogOut } from "react-icons/lu";
+import { MdDashboardCustomize } from "react-icons/md";
+
 
 import {useSelector, useDispatch } from 'react-redux';    
 import { fetchCart } from "../redux/slices/cart.Slice";
@@ -391,7 +394,8 @@ useEffect(() => {
               to="/dashboard"
               className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
             >
-              Dashboard
+              {/* Dashboard */}
+              <MdDashboardCustomize />
             </Link>  
             ) : (
               <Link to={"/cart"}>
@@ -428,7 +432,8 @@ useEffect(() => {
               onClick={handlelogout}
               className="bg-red-400 hover:bg-red-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
             >
-              LogOut
+              {/* LogOut */}
+              <LuLogOut />
             </Link>
             )}
 

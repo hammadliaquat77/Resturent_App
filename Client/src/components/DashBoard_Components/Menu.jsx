@@ -166,20 +166,19 @@ function Menu() {
             onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
           />
 
-          <select
-            className="border rounded px-3 py-2"
-            value={newItem.category}
-            onChange={(e) =>
-              setNewItem({ ...newItem, category: e.target.value })
-            }
-          >
-            <option>Fastfood</option>
-            <option>Drink</option>
-            <option>Dessert</option>
-            <option>Sweet</option>
-            <option>Pizza</option>
-             
-          </select>
+<select
+  className="border rounded px-3 py-2"
+  value={newItem.category}
+  onChange={(e) => setNewItem({ ...newItem, category: e.target.value })}
+>
+  <option value="" disabled>Select Category</option>
+  <option value="Fastfood">Fastfood</option>
+  <option value="Drink">Drink</option>
+  <option value="Dessert">Dessert</option>
+  <option value="Sweet">Sweet</option>
+  <option value="Pizza">Pizza</option>
+</select>
+
 
           <select
             className="border rounded px-3 py-2"
@@ -188,6 +187,7 @@ function Menu() {
               setNewItem({ ...newItem, isAvailable: e.target.value  === "true" })
             }
           >
+            <option value="" disabled >Selected Status</option>
             <option value="true">Available</option>
             <option value="false">Not Available</option>
           </select>

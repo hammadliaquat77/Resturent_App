@@ -17,6 +17,9 @@ function Checkout() {
       const items = res.data?.cart?.items || [];
       setCartItems(items);
 
+      console.log(items);
+      
+
       const total = items.reduce((sum, item) =>
           sum + (item?.productId?.price || 0) * (item?.quantity || 1),
         0
