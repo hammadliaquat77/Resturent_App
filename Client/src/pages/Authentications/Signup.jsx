@@ -31,7 +31,7 @@ function Signup() {
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.newUser.role);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       // alert(error.response.data.message);
       toast.error(error.response.data.message);

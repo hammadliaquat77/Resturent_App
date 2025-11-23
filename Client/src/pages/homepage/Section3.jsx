@@ -267,6 +267,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from "../../redux/slices/product.Slice";
+import { Link } from "react-router-dom";
 
 
 import AOS from 'aos';
@@ -341,7 +342,9 @@ function Section3() {
       <main className="md:px-20 px-4 pb-10">
         <Slider {...settings}>
           {visibleItems.map((item) => (
-            <div data-aos="fade-up" key={item.id} className="px-2 min-w-0">
+            <Link to={`/single/${item._id}`}>
+
+            <div data-aos="fade-up" key={item._id} className="px-2 min-w-0">
               <div className="bg-white rounded-2xl flex flex-col items-center py-6 shadow-md hover:scale-105 transition-transform duration-200">
                 <img
                   src={item.image}
@@ -362,6 +365,8 @@ function Section3() {
                 <p className="text-md font-bold mt-2 text-center">{item.name}</p>
               </div>
             </div>
+            </Link>
+
           ))}
         </Slider>
 

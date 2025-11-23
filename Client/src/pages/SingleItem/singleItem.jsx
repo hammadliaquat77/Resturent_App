@@ -8,6 +8,7 @@ import { addItem } from "../../redux/slices/cart.Slice.js";
 function SingleFood() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

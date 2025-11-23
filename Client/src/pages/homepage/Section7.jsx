@@ -1,6 +1,7 @@
 import React from "react";
 import DealBg from "../../assets/Section7/DealBg.png";
 import Bg from "../../assets/Section7/Bg.png";
+import { Link } from "react-router-dom";
 
 
 import AOS from 'aos';
@@ -71,9 +72,11 @@ function Section7() {
             ))}
           </div>
 
-          <button data-aos="fade-up" className="py-3 sm:py-4 px-6 sm:px-8 bg-green-500 mt-6 text-white rounded-md text-[12px] sm:text-sm hover:bg-green-600 transition-all duration-300">
+         <Link to="/shop">
+          <button data-aos="fade-up" className="py-3 sm:py-4 px-6 sm:px-8 bg-green-500 mt-6 text-white rounded-md text-[12px] sm:text-sm hover:bg-green-600 transition-all duration-300 cursor-pointer">
             Order Now
           </button>
+         </Link>
         </div>
       </main>
     </section>

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 import bgImage from "../../assets/Hero/Section.png";
 import Burger from "../../assets/Hero/Burger.png";
@@ -129,12 +130,13 @@ const Home = () => {
 
                   {/* Button */}
                   <div data-aos="fade-up" className="mt-6">
+                    <Link to="/shop">
                     <button
                       onClick={() =>
                         handleOrderPopup ? handleOrderPopup() : null
                       }
-                      className="bg-pink-600 hover:bg-pink-700 transition rounded-md md:py-3 md:px-7 py-2 px-5 font-semibold flex items-center gap-2 text-white mx-auto md:mx-0"
-                    >
+                      className="bg-pink-600 hover:bg-pink-700 transition rounded-md md:py-3 md:px-7 py-2 px-5 font-semibold flex items-center gap-2 text-white mx-auto md:mx-0 cursor-pointer"
+                      >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -142,15 +144,16 @@ const Home = () => {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         strokeWidth={2}
-                      >
+                        >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 2.293a1 1 0 00.708 1.707H19m-6 0a1 1 0 100 2 1 1 0 000-2z"
-                        />
+                          />
                       </svg>
                       Order Now
                     </button>
+                    </Link>
                   </div>
                 </div>
 

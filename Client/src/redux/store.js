@@ -4,12 +4,15 @@ import cartReducer from './slices/cart.Slice.js'
 import usersReducer from "./slices/user.Slice.js";
 import orderReducer from "./slices/order.Slice.js";
 
+import darkModeReducer from "./slices/darkMode.Slice.js";
+
 export const store = configureStore({
     reducer: {
         menu: menuReducer,
         cart: cartReducer,
         users: usersReducer,
-        orders: orderReducer
+        orders: orderReducer,
+        darkMode: darkModeReducer
     }
 })
 

@@ -1,194 +1,142 @@
 
 // import React, { useState, useEffect } from "react";
-// import { Link, useNavigate } from "react-router-dom"; // ✅ React Router link for SPA navigation
-// import { FiMenu, FiX } from "react-icons/fi"; // ✅ Icons for mobile toggle
+// import { Link, useNavigate } from "react-router-dom";
+// import { FiMenu, FiX } from "react-icons/fi";
+// import { LuLogOut } from "react-icons/lu";
+// import { MdDashboardCustomize } from "react-icons/md";
 
-// import axios from "axios"
+// import { useSelector, useDispatch } from "react-redux";
+// import { fetchCart } from "../redux/slices/cart.Slice";
+// import axios from "axios";
 
 // const Navbar = () => {
+//   const dispatch = useDispatch();
+//   const cartCount = useSelector((state) => state.cart.count);
 
 //   const navigate = useNavigate();
 
-//   const token = localStorage.getItem("token")
-//   const role = localStorage.getItem("role")
-
-//   const [cartCount, setCartCount] = useState(0);
-
-//   const fetchCartCount = async () => {
-//   if (!token) return;
-
-//   try {
-//     const res = await axios.get("http://localhost:8000/api/cart/all", {
-//       headers: { Authorization: `Bearer ${token}` },
-//     });
-
-//     const items = res.data?.cart?.items || [];
-//     const totalCount = items.reduce((sum, item) => sum + (item.quantity || 0), 0);
-//     setCartCount(totalCount);
-//   } catch (err) {
-//     console.log("Cart Fetch Error:", err.message);
-//     setCartCount(0);
-//   }
-// };
-
-
-// useEffect(() => {
-//   fetchCartCount();
-// }, []);
-
+//   const token = localStorage.getItem("token");
+//   const role = localStorage.getItem("role");
 
 //   const [menuOpen, setMenuOpen] = useState(false);
 
+//   useEffect(() => {
+//     if (role === "customer") dispatch(fetchCart());
+//   }, [role]);
 
-
-//   const handlelogout = async ()=> {
+//   const handleLogout = async () => {
 //     try {
-//        const res = await axios.post("http://localhost:8000/api/auth/logout",
+//       const res = await axios.post(
+//         "http://localhost:8000/api/auth/logout",
 //         {},
-//         {headers: {Authorization: `Bearer ${token}` }}
-//        )
+//         { headers: { Authorization: `Bearer ${token}` } }
+//       );
 
-//       alert(res.data.message)
+//       alert(res.data.message);
 //       localStorage.removeItem("token");
 //       localStorage.removeItem("role");
-      
-//       navigate("/login")
 
+//       navigate("/login");
 //     } catch (error) {
-//        alert(error.response.data.message || "Logout Failed")      
+//       alert(error.response?.data?.message || "Logout failed");
 //     }
-//   }
+//   };
 
 //   return (
 //     <nav className="bg-white shadow-md fixed w-full z-50">
 //       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 //         <div className="flex justify-between items-center h-16">
 //           {/* Logo */}
-//           <div className="shrink-0 flex items-center">
-//             <span className="ml-2 font-bold text-xl text-gray-900">
-//               TasteNest
-//             </span>
-//           </div>
+//           <div className="font-bold text-xl text-gray-900">TasteNest</div>
 
-//           {/* Menu (Desktop) */}
+//           {/* Desktop Menu */}
 //           <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700">
-//             <Link to="/" className="hover:text-yellow-400">
-//               Home
-//             </Link>
-//             <Link to="/about" className="hover:text-yellow-400">
-//               About Us
-//             </Link>
+//             <Link to="/" className="hover:text-yellow-400">Home</Link>
+//             <Link to="/about" className="hover:text-yellow-400">About Us</Link>
 
-//             {/* Dropdown Shop */}
 //             <div className="relative group">
-//               <button className="inline-flex items-center hover:text-yellow-400 focus:outline-none">
+//               <button className="inline-flex items-center hover:text-yellow-400">
 //                 Shop
-//                 <svg
-//                   className="ml-1 h-4 w-4 fill-current"
-//                   xmlns="http://www.w3.org/2000/svg"
-//                   viewBox="0 0 20 20"
-//                 >
+//                 <svg className="ml-1 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 //                   <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
 //                 </svg>
 //               </button>
-//               <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-32 z-50">
-//                 <Link
-//                   to="/shop"
-//                   className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
-//                 >
-//                   Menu
-//                 </Link>
-//                 <Link
-//                   to="/shop/option2"
-//                   className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
-//                 >
-//                   Option 2
-//                 </Link>
+
+//               <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-32">
+//                 <Link to="/shop" className="block px-4 py-2 hover:bg-yellow-400 hover:text-white">Menu</Link>
 //               </div>
 //             </div>
 
-//             <Link to="/blog" className="hover:text-yellow-400">
-//               Blog
-//             </Link>
-
-
-//             <Link to="/contact" className="hover:text-yellow-400">
-//               Contact
-//             </Link>
+//             <Link to="/blog" className="hover:text-yellow-400">Blog</Link>
+//             <Link to="/contact" className="hover:text-yellow-400">Contact</Link>
 //           </div>
 
-//           {/* Right-side buttons */}
+//           {/* Right Side Desktop Buttons */}
 //           <div className="hidden md:flex items-center space-x-4">
-//             {/* Cart */}
-            
-//             {role === "admin" ? (
-//                 <Link
-//               to="/"
-//               className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-//             >
-//               Dashboard
-//             </Link>  
-//             ) : (
-//               <Link to={"/cart"}>
-//             <button
-//               aria-label="Cart"
-//               className="relative text-gray-700 hover:text-yellow-400 focus:outline-none"
-//               >
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 className="h-6 w-6"
-//                 fill="none"
-//                 viewBox="0 0 24 24"
-//                 stroke="currentColor"
-//               >
-//                 <path
-//                   strokeLinecap="round"
-//                   strokeLinejoin="round"
-//                   strokeWidth={2}
-//                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 2.293a1 1 0 00.708 1.707H19m-6 0a1 1 0 100 2 1 1 0 000-2z"
-//                   />
-//               </svg>
-//               <span className="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full px-1 text-xs font-bold">
-//                 {cartCount}
-//               </span>
-//             </button>
-//                 </Link>
 
-//             )
-//              }
-
-//             {/* Contact Us Button */} 
-//             {token && (
-//             <Link
-//               onClick={handlelogout}
-//               className="bg-red-400 hover:bg-red-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-//             >
-//               LogOut
-//             </Link>
+//             {/* Admin Dashboard */}
+//             {role === "admin" && (
+//               <Link
+//                 to="/dashboard"
+//                 className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md shadow-md"
+//               >
+//                 <MdDashboardCustomize size={20} />
+//               </Link>
 //             )}
 
+//             {/* Cart (Customer) */}
+//             {role === "customer" && (
+//               <Link to="/cart">
+//                 <button className="relative text-gray-700 hover:text-yellow-400">
+//                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+//                     viewBox="0 0 24 24" stroke="currentColor">
+//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+//                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 
+//                       2.293a1 1 0 00.708 1.707H19m-6 
+//                       0a1 1 0 100 2 1 1 0 000-2z"
+//                     />
+//                   </svg>
+//                   <span className="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full px-1 text-xs font-bold">
+//                     {cartCount}
+//                   </span>
+//                 </button>
+//               </Link>
+//             )}
+
+//             {/* My Orders (Customer) */}
+//             {role === "customer" && (
+//               <Link
+//                 to="/myorders"
+//                 className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md"
+//               >
+//                 MyOrders
+//               </Link>
+//             )}
+
+//             {/* Logout */}
+//             {token && (
+//               <button
+//                 onClick={handleLogout}
+//                 className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-md"
+//               >
+//                 <LuLogOut size={20} />
+//               </button>
+//             )}
+
+//             {/* Login */}
 //             {!token && (
-//             <Link
-//               to="/login"
-//               className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-//             >
-//               Login
-//             </Link>
+//               <Link to="/login" className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md">
+//                 Login
+//               </Link>
 //             )}
 //           </div>
 
-//           {/* Mobile menu toggle */}
-//           <div className="md:hidden flex items-center gap-4">
+//           {/* Mobile Hamburger */}
+//           <div className="md:hidden flex">
 //             {menuOpen ? (
-//               <FiX
-//                 className="text-3xl cursor-pointer"
-//                 onClick={() => setMenuOpen(false)}
-//               />
+//               <FiX className="text-3xl cursor-pointer" onClick={() => setMenuOpen(false)} />
 //             ) : (
-//               <FiMenu
-//                 className="text-3xl cursor-pointer"
-//                 onClick={() => setMenuOpen(true)}
-//               />
+//               <FiMenu className="text-3xl cursor-pointer" onClick={() => setMenuOpen(true)} />
 //             )}
 //           </div>
 //         </div>
@@ -198,62 +146,86 @@
 //       {menuOpen && (
 //         <div className="md:hidden bg-white shadow-lg">
 //           <ul className="px-4 pt-4 pb-6 space-y-4 text-gray-700 font-semibold">
-//             <li>
-//               <Link to="/" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-//                 Home
-//               </Link>
-//             </li>
-//             <li>
-//               <Link to="/about" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-//                 About Us
-//               </Link>
-//             </li>
 
-//             {/* Shop dropdown */}
-//             <li>
-//               <details className="group">
-//                 <summary className="cursor-pointer flex items-center justify-between list-none">
-//                   Shop
-//                   <svg
-//                     className="h-4 w-4 transform group-open:rotate-180 transition-transform"
-//                     xmlns="http://www.w3.org/2000/svg"
-//                     viewBox="0 0 20 20"
-//                     fill="currentColor"
-//                   >
-//                     <path d="M5.23 7.21a.75.75 0 011.04.02L10 11.293l3.72-4.06a.75.75 0 111.08 1.04l-4.25 4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" />
-//                   </svg>
-//                 </summary>
-//                 <ul className="pl-4 pt-2 space-y-2">
-//                   <li>
-//                     <Link to="/shop" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-//                       Menu
-//                     </Link>
-//                   </li>
-//                 </ul>
-//               </details>
-//             </li>
+//             <Link to="/" onClick={() => setMenuOpen(false)} className="block">Home</Link>
+//             <Link to="/about" onClick={() => setMenuOpen(false)} className="block">About Us</Link>
 
-//             <li>
-//               <Link to="/blog" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-//                 Blog
-//               </Link>
-//             </li>
+//             <details className="group">
+//               <summary className="cursor-pointer flex items-center justify-between">
+//                 Shop
+//                 <svg className="h-4 w-4 transform group-open:rotate-180"
+//                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+//                   <path d="M5.23 7.21a.75.75 0 011.04.02L10 11.293l3.72-4.06a.75.75 0 111.08 1.04l-4.25 
+//                   4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" />
+//                 </svg>
+//               </summary>
 
-//             <li>
-//               <Link to="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-//                 Contact
-//               </Link>
-//             </li>
+//               <ul className="pl-4 pt-2 space-y-2">
+//                 <Link to="/shop" onClick={() => setMenuOpen(false)} className="block">
+//                   Menu
+//                 </Link>
+//               </ul>
+//             </details>
 
-//             <li>
+//             <Link to="/blog" onClick={() => setMenuOpen(false)} className="block">Blog</Link>
+//             <Link to="/contact" onClick={() => setMenuOpen(false)} className="block">Contact</Link>
+
+//             {/* Mobile Admin Dashboard */}
+//             {role === "admin" && (
 //               <Link
-//                 to="/contact"
+//                 to="/dashboard"
 //                 onClick={() => setMenuOpen(false)}
-//                 className="w-full block text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 rounded-md"
+//                 className="block bg-yellow-400 text-white text-center py-2 rounded-md"
 //               >
-//                 Contact Us
+//                 Dashboard
 //               </Link>
-//             </li>
+//             )}
+
+//             {/* Mobile Cart */}
+//             {role === "customer" && (
+//               <Link
+//                 to="/cart"
+//                 onClick={() => setMenuOpen(false)}
+//                 className="flex justify-between bg-yellow-400 text-white py-2 px-3 rounded-md"
+//               >
+//                 <span>Cart</span>
+//                 <span className="bg-white text-yellow-500 font-bold px-2 py-0.5 rounded-full">
+//                   {cartCount}
+//                 </span>
+//               </Link>
+//             )}
+
+//             {/* Mobile My Orders */}
+//             {role === "customer" && (
+//               <Link
+//                 to="/myorders"
+//                 onClick={() => setMenuOpen(false)}
+//                 className="block bg-yellow-400 text-white text-center py-2 rounded-md"
+//               >
+//                 My Orders
+//               </Link>
+//             )}
+
+//             {/* Mobile Logout */}
+//             {token && (
+//               <button
+//                 onClick={() => { handleLogout(); setMenuOpen(false); }}
+//                 className="w-full bg-red-400 text-white py-2 rounded-md"
+//               >
+//                 Logout
+//               </button>
+//             )}
+
+//             {/* Mobile Login */}
+//             {!token && (
+//               <Link
+//                 to="/login"
+//                 onClick={() => setMenuOpen(false)}
+//                 className="block bg-yellow-400 text-white text-center py-2 rounded-md"
+//               >
+//                 Login
+//               </Link>
+//             )}
 //           </ul>
 //         </div>
 //       )}
@@ -262,7 +234,6 @@
 // };
 
 // export default Navbar;
-  
 
 
 
@@ -273,201 +244,154 @@
 
 
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"; // ✅ React Router link for SPA navigation
-import { FiMenu, FiX } from "react-icons/fi"; // ✅ Icons for mobile toggle
+import { Link, useNavigate } from "react-router-dom";
+import { FiMenu, FiX } from "react-icons/fi";
 import { LuLogOut } from "react-icons/lu";
 import { MdDashboardCustomize } from "react-icons/md";
+// import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { Sun, MoonStar  } from 'lucide-react';
 
-
-import {useSelector, useDispatch } from 'react-redux';    
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCart } from "../redux/slices/cart.Slice";
-
-// import  Logo  from "../assets/Navbar/Logo.png";
-
+import { toggleDarkMode } from "../redux/slices/darkMode.Slice"; // ✅ import slice
 import axios from "axios";
 
 const Navbar = () => {
-
-  const  dispatch = useDispatch();
-  const cartCount = useSelector((state)=> state.cart.count)
+  const dispatch = useDispatch();
+  const cartCount = useSelector((state) => state.cart.count);
+  const darkMode = useSelector((state) => state.darkMode.darkMode); // ✅ get dark mode state
 
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token")
-  const role = localStorage.getItem("role")
-
-useEffect(() => {
-  
-    dispatch(fetchCart());
-  
-}, []);
-
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (role === "customer") dispatch(fetchCart());
+  }, [role, dispatch]);
 
-
-  const handlelogout = async ()=> {
+  const handleLogout = async () => {
     try {
-       const res = await axios.post("http://localhost:8000/api/auth/logout",
+      const res = await axios.post(
+        "http://localhost:8000/api/auth/logout",
         {},
-        {headers: {Authorization: `Bearer ${token}` }}
-       )
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-      alert(res.data.message)
+      alert(res.data.message);
       localStorage.removeItem("token");
       localStorage.removeItem("role");
-      
-      navigate("/login")
 
+      navigate("/login");
     } catch (error) {
-       alert(error.response.data.message || "Logout Failed")      
+      alert(error.response?.data?.message || "Logout failed");
     }
-  }
+  };
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
+    <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="shrink-0 flex items-center">
-            <span className="ml-2 font-bold text-xl text-gray-900">
-              TasteNest
-            </span>
-            {/* <img src={Logo} alt="Logo" 
-            className="h-12 w-32 rounded-2xl" /> */}
-          </div>
+          <div className="font-bold text-xl text-gray-900 dark:text-gray-100">TasteNest</div>
 
-          {/* Menu (Desktop) */}
-          <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700">
-            <Link to="/" className="hover:text-yellow-400">
-              Home
-            </Link>
-            <Link to="/about" className="hover:text-yellow-400">
-              About Us
-            </Link>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700 dark:text-gray-200">
+            <Link to="/" className="hover:text-yellow-400">Home</Link>
+            <Link to="/about" className="hover:text-yellow-400">About Us</Link>
 
-            {/* Dropdown Shop */}
             <div className="relative group">
-              <button className="inline-flex items-center hover:text-yellow-400 focus:outline-none">
+              <button className="inline-flex items-center hover:text-yellow-400">
                 Shop
-                <svg
-                  className="ml-1 h-4 w-4 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
+                <svg className="ml-1 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                 </svg>
               </button>
-              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 py-2 min-w-32 z-50">
-                <Link
-                  to="/shop"
-                  className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
-                >
-                  Menu
-                </Link>
-                <Link
-                  to="/shop/option2"
-                  className="block px-4 py-2 text-gray-700 hover:bg-yellow-400 hover:text-white"
-                >
-                  Option 2
-                </Link>
+
+              <div className="absolute hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded-md mt-1 py-2 min-w-32">
+                <Link to="/shop" className="block px-4 py-2 hover:bg-yellow-400 hover:text-white">Menu</Link>
               </div>
             </div>
 
-            <Link to="/blog" className="hover:text-yellow-400">
-              Blog
-            </Link>
-
-
-            <Link to="/contact" className="hover:text-yellow-400">
-              Contact
-            </Link>
+            <Link to="/blog" className="hover:text-yellow-400">Blog</Link>
+            <Link to="/contact" className="hover:text-yellow-400">Contact</Link>
           </div>
 
-          {/* Right-side buttons */}
+          {/* Right Side Desktop Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            {/* Cart */}
-            
-            {role === "admin" ? (
-                <Link
-              to="/dashboard"
-              className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-            >
-              {/* Dashboard */}
-              <MdDashboardCustomize />
-            </Link>  
-            ) : (
-              <Link to={"/cart"}>
+            {/* Dark Mode Toggle */}
             <button
-              aria-label="Cart"
-              className="relative text-gray-700 hover:text-yellow-400 focus:outline-none"
-              >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 2.293a1 1 0 00.708 1.707H19m-6 0a1 1 0 100 2 1 1 0 000-2z"
-                  />
-              </svg>
-              <span className="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full px-1 text-xs font-bold">
-                {cartCount}
-              </span>
+              onClick={() => dispatch(toggleDarkMode())}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            >
+              {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <MoonStar className="w-5 h-5 text-gray-800" />}
             </button>
-                </Link>
 
-            )
-             }
+            {/* Admin Dashboard */}
+            {role === "admin" && (
+              <Link
+                to="/dashboard"
+                className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md shadow-md"
+              >
+                <MdDashboardCustomize size={20} />
+              </Link>
+            )}
 
-            {/* Contact Us Button */} 
+            {/* Cart (Customer) */}
+            {role === "customer" && (
+              <Link to="/cart">
+                <button className="relative text-gray-700 dark:text-gray-200 hover:text-yellow-400 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.293 
+                      2.293a1 1 0 00.708 1.707H19m-6 
+                      0a1 1 0 100 2 1 1 0 000-2z"
+                    />
+                  </svg>
+                  <span className="absolute -top-2 -right-2 bg-yellow-400 text-white rounded-full px-1 text-xs font-bold">
+                    {cartCount}
+                  </span>
+                </button>
+              </Link>
+            )}
+
+            {/* My Orders */}
+            {role === "customer" && (
+              <Link
+                to="/myorders"
+                className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md"
+              >
+                MyOrders
+              </Link>
+            )}
+
+            {/* Logout */}
             {token && (
-            <Link
-              onClick={handlelogout}
-              className="bg-red-400 hover:bg-red-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-            >
-              {/* LogOut */}
-              <LuLogOut />
-            </Link>
+              <button
+                onClick={handleLogout}
+                className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-md"
+              >
+                <LuLogOut size={20} />
+              </button>
             )}
 
+            {/* Login */}
             {!token && (
-            <Link
-              to="/login"
-              className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-            >
-              Login
-            </Link>
+              <Link to="/login" className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md">
+                Login
+              </Link>
             )}
-
-          {role === "customer" && (
-            <Link
-              to="/myorders"
-              className="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-4 py-2 rounded-md shadow-md transition duration-300"
-            >
-              MyOrders
-            </Link>
-          )}
           </div>
 
-          {/* Mobile menu toggle */}
-          <div className="md:hidden flex items-center gap-4">
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex">
             {menuOpen ? (
-              <FiX
-                className="text-3xl cursor-pointer"
-                onClick={() => setMenuOpen(false)}
-              />
+              <FiX className="text-3xl cursor-pointer" onClick={() => setMenuOpen(false)} />
             ) : (
-              <FiMenu
-                className="text-3xl cursor-pointer"
-                onClick={() => setMenuOpen(true)}
-              />
+              <FiMenu className="text-3xl cursor-pointer" onClick={() => setMenuOpen(true)} />
             )}
           </div>
         </div>
@@ -475,64 +399,96 @@ useEffect(() => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <ul className="px-4 pt-4 pb-6 space-y-4 text-gray-700 font-semibold">
-            <li>
-              <Link to="/" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-                About Us
-              </Link>
-            </li>
+        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg transition-colors duration-300">
+          <ul className="px-4 pt-4 pb-6 space-y-4 text-gray-700 dark:text-gray-200 font-semibold">
 
-            {/* Shop dropdown */}
-            <li>
-              <details className="group">
-                <summary className="cursor-pointer flex items-center justify-between list-none">
-                  Shop
-                  <svg
-                    className="h-4 w-4 transform group-open:rotate-180 transition-transform"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M5.23 7.21a.75.75 0 011.04.02L10 11.293l3.72-4.06a.75.75 0 111.08 1.04l-4.25 4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" />
-                  </svg>
-                </summary>
-                <ul className="pl-4 pt-2 space-y-2">
-                  <li>
-                    <Link to="/shop" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-                      Menu
-                    </Link>
-                  </li>
-                </ul>
-              </details>
-            </li>
+            <Link to="/" onClick={() => setMenuOpen(false)} className="block">Home</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)} className="block">About Us</Link>
 
-            <li>
-              <Link to="/blog" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-                Blog
-              </Link>
-            </li>
+            <details className="group">
+              <summary className="cursor-pointer flex items-center justify-between">
+                Shop
+                <svg className="h-4 w-4 transform group-open:rotate-180"
+                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5.23 7.21a.75.75 0 011.04.02L10 11.293l3.72-4.06a.75.75 0 111.08 1.04l-4.25 
+                  4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" />
+                </svg>
+              </summary>
 
-            <li>
-              <Link to="/contact" onClick={() => setMenuOpen(false)} className="block hover:text-yellow-400">
-                Contact
-              </Link>
-            </li>
+              <ul className="pl-4 pt-2 space-y-2">
+                <Link to="/shop" onClick={() => setMenuOpen(false)} className="block">
+                  Menu
+                </Link>
+              </ul>
+            </details>
 
-            <li>
+            <Link to="/blog" onClick={() => setMenuOpen(false)} className="block">Blog</Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)} className="block">Contact</Link>
+
+            {/* Dark Mode Toggle Mobile */}
+            <button
+              onClick={() => dispatch(toggleDarkMode())}
+              className="w-full p-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100"
+            >
+              {darkMode ? "Light Mode" : "Dark Mode"}
+            </button>
+
+            {/* Mobile Admin Dashboard */}
+            {role === "admin" && (
               <Link
-                to="/contact"
+                to="/dashboard"
                 onClick={() => setMenuOpen(false)}
-                className="w-full block text-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 rounded-md"
+                className="block bg-yellow-400 text-white text-center py-2 rounded-md"
               >
-                Contact Us
+                Dashboard
               </Link>
-            </li>
+            )}
+
+            {/* Mobile Cart */}
+            {role === "customer" && (
+              <Link
+                to="/cart"
+                onClick={() => setMenuOpen(false)}
+                className="flex justify-between bg-yellow-400 text-white py-2 px-3 rounded-md"
+              >
+                <span>Cart</span>
+                <span className="bg-white text-yellow-500 font-bold px-2 py-0.5 rounded-full">
+                  {cartCount}
+                </span>
+              </Link>
+            )}
+
+            {/* Mobile My Orders */}
+            {role === "customer" && (
+              <Link
+                to="/myorders"
+                onClick={() => setMenuOpen(false)}
+                className="block bg-yellow-400 text-white text-center py-2 rounded-md"
+              >
+                My Orders
+              </Link>
+            )}
+
+            {/* Mobile Logout */}
+            {token && (
+              <button
+                onClick={() => { handleLogout(); setMenuOpen(false); }}
+                className="w-full bg-red-400 text-white py-2 rounded-md"
+              >
+                Logout
+              </button>
+            )}
+
+            {/* Mobile Login */}
+            {!token && (
+              <Link
+                to="/login"
+                onClick={() => setMenuOpen(false)}
+                className="block bg-yellow-400 text-white text-center py-2 rounded-md"
+              >
+                Login
+              </Link>
+            )}
           </ul>
         </div>
       )}
@@ -541,4 +497,3 @@ useEffect(() => {
 };
 
 export default Navbar;
-  

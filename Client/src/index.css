@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+
+/* Optional smooth transition for dark mode */
+body {
+  @apply transition-colors duration-500;
+}

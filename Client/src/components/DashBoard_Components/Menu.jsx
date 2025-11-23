@@ -9,7 +9,7 @@ function Menu() {
   const menuItems = useSelector((state) => state.menu.items);
 
   // console.log(menuItems);
-  
+
 
   const [newItem, setNewItem] = useState({
     name: "",
@@ -52,7 +52,7 @@ function Menu() {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "multipart/form-data",
-              
+
             },
           }
         );
@@ -91,7 +91,7 @@ function Menu() {
   };
 
   // ✅ Edit menu item
-  const handleEdit = (item) => {
+    const handleEdit = (item) => {
     setEditMenu(item);
     setNewItem({
       name: item.name,
@@ -121,7 +121,7 @@ function Menu() {
   // Category & Status badges
   const getCategoryColor = (cat) => {
     switch (cat) {
-      case "Main":
+      case "Fastfood":
         return "bg-blue-100 text-blue-700";
       case "Drink":
         return "bg-red-100 text-red-700";
@@ -166,25 +166,27 @@ function Menu() {
             onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
           />
 
-<select
-  className="border rounded px-3 py-2"
-  value={newItem.category}
-  onChange={(e) => setNewItem({ ...newItem, category: e.target.value })}
->
-  <option value="" disabled>Select Category</option>
-  <option value="Fastfood">Fastfood</option>
-  <option value="Drink">Drink</option>
-  <option value="Dessert">Dessert</option>
-  <option value="Sweet">Sweet</option>
-  <option value="Pizza">Pizza</option>
-</select>
+          <select
+            className="border rounded px-3 py-2"
+            value={newItem.category}
+            onChange={(e) => setNewItem({ ...newItem, category: e.target.value })}
+          >
+            <option value="" disabled>Select Category</option>
+            <option value="Fastfood">Fastfood</option>
+            <option value="Drink">Drink</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Sweet">Sweet</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Bbq">BBQ</option>
+            <option value="Shake">Shake</option>
+          </select>
 
 
           <select
             className="border rounded px-3 py-2"
             value={newItem.isAvailable}
             onChange={(e) =>
-              setNewItem({ ...newItem, isAvailable: e.target.value  === "true" })
+              setNewItem({ ...newItem, isAvailable: e.target.value === "true" })
             }
           >
             <option value="" disabled >Selected Status</option>
