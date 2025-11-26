@@ -206,11 +206,11 @@ function Shop() {
   }, [selectedCategory, items, searchTerm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 dark:text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 absolute mt-16 md:mt-16">
       {/* Header Section */}
-      <header className="bg-white dark:bg-gray-800 shadow-lg py-6 px-4 md:px-20">
+      <header className="bg-white shadow-lg py-6 px-4 md:px-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white">
+          <h1 className="md:text-4xl font-extrabold text-gray-900">
             Our Menu
           </h1>
           {/* Search Bar */}
@@ -221,7 +221,7 @@ function Shop() {
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-700 dark:text-white"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300  rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 "
             />
           </div>
           {/* Mobile Sidebar Toggle */}
@@ -237,11 +237,11 @@ function Shop() {
       <div className="max-w-7xl mx-auto px-4 md:px-20 py-8 flex">
         {/* Sidebar for Categories */}
         <aside
-          className={`w-full md:w-1/4 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8 md:mb-0 md:mr-8 transition-transform duration-300 ${
+          className={`w-full md:w-1/4 bg-white  shadow-lg rounded-lg p-6 mb-8 md:mb-0 md:mr-8 transition-transform duration-300 ${
             isSidebarOpen ? "block" : "hidden md:block"
           }`}
         >
-          <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h3 className="text-xl font-bold mb-4 text-gray-900 ">
             Categories
           </h3>
           <ul className="space-y-2">
@@ -255,7 +255,7 @@ function Shop() {
                   className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                     selectedCategory === cat
                       ? "bg-red-500 text-white shadow-md"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-red-100 dark:hover:bg-red-900 hover:text-red-600"
+                      : "bg-gray-100 text-gray-700  hover:bg-red-100  hover:text-red-600"
                   }`}
                 >
                   {cat}
@@ -272,7 +272,7 @@ function Shop() {
             {filteredItems.map((product) => (
               <div
                 key={product._id}
-                className="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group"
+                className="bg-white  shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group"
               >
                 <Link to={`/single/${product._id}`} className="block">
                   <div className="relative">
@@ -286,7 +286,7 @@ function Shop() {
                 </Link>
                 <div className="p-5">
                   <Link to={`/single/${product._id}`}>
-                    <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white hover:text-red-500 transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 text-gray-900  hover:text-red-500 transition-colors">
                       {product.name}
                     </h3>
                   </Link>
@@ -296,8 +296,8 @@ function Shop() {
                   <p
                     className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
                       product.isAvailable
-                        ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
                     }`}
                   >
                     {product.isAvailable ? "Available" : "Out of Stock"}
@@ -310,7 +310,7 @@ function Shop() {
           {filteredItems.length === 0 && (
             <div className="text-center py-16">
               <FaSearch className="mx-auto text-6xl text-gray-400 mb-4" />
-              <p className="text-xl text-gray-500 dark:text-gray-400">
+              <p className="text-xl text-gray-500">
                 No products found matching your criteria.
               </p>
               <p className="text-gray-400 mt-2">

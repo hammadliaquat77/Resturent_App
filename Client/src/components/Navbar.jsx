@@ -291,14 +291,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50 transition-colors duration-300">
+  <nav className="bg-white shadow-md fixed w-full z-50 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="font-bold text-xl text-gray-900 dark:text-gray-100">TasteNest</div>
+          <div className="font-bold text-xl text-gray-900">TasteNest</div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700 dark:text-gray-200">
+          <div className="hidden md:flex space-x-8 items-center font-semibold text-gray-700">
             <Link to="/" className="hover:text-yellow-400">Home</Link>
             <Link to="/about" className="hover:text-yellow-400">About Us</Link>
 
@@ -324,9 +324,9 @@ const Navbar = () => {
             {/* Dark Mode Toggle */}
             <button
               onClick={() => dispatch(toggleDarkMode())}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
             >
-              {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <MoonStar className="w-5 h-5 text-gray-800" />}
+              {darkMode ? <Sun className="w-5 h-5 text-gray-800" /> : <MoonStar className="w-5 h-5 text-gray-800" />}
             </button>
 
             {/* Admin Dashboard */}
@@ -342,7 +342,7 @@ const Navbar = () => {
             {/* Cart (Customer) */}
             {role === "customer" && (
               <Link to="/cart">
-                <button className="relative text-gray-700 dark:text-gray-200 hover:text-yellow-400 transition">
+                <button className="relative text-gray-700 cursor-pointer flex justify-center items-center dark:text-gray-200 hover:text-yellow-400 transition">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -362,7 +362,7 @@ const Navbar = () => {
             {role === "customer" && (
               <Link
                 to="/myorders"
-                className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded-md"
+                className="bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-white px-4 py-2 rounded-md"
               >
                 MyOrders
               </Link>
@@ -372,7 +372,7 @@ const Navbar = () => {
             {token && (
               <button
                 onClick={handleLogout}
-                className="bg-red-400 hover:bg-red-500 text-white px-4 py-2 rounded-md"
+                className="bg-red-400 cursor-pointer hover:bg-red-500 text-white px-4 py-2 rounded-md"
               >
                 <LuLogOut size={20} />
               </button>
@@ -385,6 +385,8 @@ const Navbar = () => {
               </Link>
             )}
           </div>
+
+
 
           {/* Mobile Hamburger */}
           <div className="md:hidden flex">
@@ -399,8 +401,8 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg transition-colors duration-300">
-          <ul className="px-4 pt-4 pb-6 space-y-4 text-gray-700 dark:text-gray-200 font-semibold">
+        <div className="md:hidden bg-white shadow-lg transition-colors duration-300">
+          <ul className="px-4 pt-4 pb-6 space-y-4 text-gray-700 font-semibold">
 
             <Link to="/" onClick={() => setMenuOpen(false)} className="block">Home</Link>
             <Link to="/about" onClick={() => setMenuOpen(false)} className="block">About Us</Link>
