@@ -196,7 +196,7 @@ function AdminReservation() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8 mt-10 md:mt-0">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

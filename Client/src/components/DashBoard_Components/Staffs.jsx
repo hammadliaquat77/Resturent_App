@@ -123,7 +123,7 @@ function Staffs() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 mt-10 md:mt-0">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Restaurant Staff</h1>
         <button
