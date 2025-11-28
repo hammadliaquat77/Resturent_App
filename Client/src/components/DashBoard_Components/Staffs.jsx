@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { toast } from "react-toastify";
+
 function Staffs() {
   const token = localStorage.getItem("token");
   const [staff, setStaff] = useState([]);
@@ -28,6 +30,7 @@ function Staffs() {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStaff(res.data.allStaff);
+      toast.success(res.data.message)
     } catch (err) {
       console.log("Staff Fetch Error:", err.message);
     }
@@ -36,7 +39,8 @@ function Staffs() {
   // Add staff
   const addStaff = async () => {
     if (!newStaff.name || !newStaff.role || !newStaff.contact || !newStaff.shift) {
-      alert("Please fill all fields");
+      // alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
@@ -48,7 +52,8 @@ function Staffs() {
 
     // Phone number length validation
     if (!/^\d{11}$/.test(newStaff.contact)) {
-      alert("Phone number must be 11 digits");
+      // alert("Phone number must be 11 digits");
+      toast.error("Phone number must be 11 digits");
       return;
     }
 
@@ -64,10 +69,12 @@ function Staffs() {
       setStaff([...staff, res.data.newStaff]);
       setNewStaff({ name: "", role: "", contact: "", shift: "" });
 
-      alert("Staff added successfully!");
+      // alert("Staff added successfully!");
+      toast.success("Staff added successfully!");
 
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to add staff");
+      // alert(error.response?.data?.message || "Failed to add staff");
+      toast.error(error.response?.data?.message || "Failed to add staff");
     }
 
     setShowModal(false);
@@ -82,11 +89,13 @@ function Staffs() {
           { headers: { Authorization: `Bearer ${token}` } }
         )
 
-        alert(res.data.message);
+        // alert(res.data.message);
+        toast.success(res.data.message);
         fetchStaff();
 
       } catch (error) {
-        alert(error.response?.data?.message || "Failed to delete staff");
+        // alert(error.response?.data?.message || "Failed to delete staff");
+        toast.error(error.response?.data?.message || "Failed to delete staff");
       }
     }
 

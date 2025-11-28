@@ -20,7 +20,6 @@ function Dashboard() {
   const customer = users.filter(user => user.role === "customer");
     
 
-
 // Total revenue calculation only for 'served' or 'preparing' orders
 const totalRevenue = orders.reduce((sum, order) => {
   

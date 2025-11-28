@@ -2,6 +2,7 @@ import { Staff } from "../models/staff.model.js";
 
 // Add staff
 const addStaff = async (req, res) => {
+
      try {
         const { name, role, shift, contact } = req.body;
 
@@ -25,8 +26,6 @@ const addStaff = async (req, res) => {
         res.status(500).json({ message: error.message })
      }
 }
-
-
 
 // get all staff
 const getAllStaff = async (req, res) => {

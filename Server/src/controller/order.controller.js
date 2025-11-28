@@ -39,6 +39,11 @@ import { Inventry } from "../models/inventery.model.js";
 
 
 const placeOrder = async (req, res) => {
+
+  if (req.user.role === "admin") {
+     return res.status(403).json({ message: "Admins cannot place orders" });
+  }
+
     try {
         const { orderItems, totalPrice, paymentType, address } = req.body;
 
@@ -102,7 +107,6 @@ const getDelete = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
-
 
 
 // get MY Orders (customer)

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import { toast } from "react-toastify";
+
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/cart.Slice.js";
 
@@ -49,14 +51,17 @@ function SingleFood() {
         // Redux store me add karo
         dispatch(addItem({ product: { productId: food, quantity } }));
 
-        alert(`${food.name} x${quantity} added to cart successfully!`);
+        // alert(`${food.name} x${quantity} added to cart successfully!`);
+        toast.success(`${food.name} x${quantity} added to cart successfully!`);
         setQuantity(1); // reset quantity after adding
       } else {
-        alert("Failed to add item to cart!");
+        // alert("Failed to add item to cart!");
+        toast.error("Failed to add item to cart!");
       }
     } catch (err) {
       console.error(err.response?.data || err.message);
-      alert("Failed to add item to cart! Please try again.");
+      // alert("Failed to add item to cart! Please try again.");
+      toast.error("Failed to add item to cart! Please try again.");
     }
   };
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { toast } from "react-toastify";
+
 function MyOrders() {
   const token = localStorage.getItem("token"); // user token
   const [orders, setOrders] = useState([]);
@@ -35,11 +37,13 @@ function MyOrders() {
         }
       );
 
-      alert(res.data.message);
+      // alert(res.data.message);
+      toast.success(res.data.message);
       fetchOrders();
     } catch (error) {
       console.log("Cancel Order Error:", error);
-      alert(error.response?.data?.message || "Failed to cancel order");
+      // alert(error.response?.data?.message || "Failed to cancel order");
+      toast.error(error.response?.data?.message || "Failed to cancel order");
     }
   };
 

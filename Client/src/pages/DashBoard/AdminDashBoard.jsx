@@ -6,6 +6,7 @@ import Orders from '../../components/DashBoard_Components/Orders';
 import Menu from '../../components/DashBoard_Components/Menu';
 import Staffs from '../../components/DashBoard_Components/Staffs';
 import Inventory from '../../components/DashBoard_Components/Inventry';
+import AdminReservation from '../../components/DashBoard_Components/Reservation';
 
 function AdminDashBoard() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -18,6 +19,7 @@ function AdminDashBoard() {
       case 'menu': return <Menu />;
       case 'staffs': return <Staffs />;
       case 'inventry': return <Inventory/>
+      case 'allreservation': return <AdminReservation/>
       default: return <Dashboard />;
     }
   };

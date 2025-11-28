@@ -25,8 +25,11 @@ function Sidebar({ setActiveTab }) {
         <button onClick={() => setActiveTab('staffs')} className="flex items-center w-full px-4 py-2 text-left hover:bg-gray-200">
           <UserAddIcon className="w-5 h-5 mr-2" /> Staff
         </button>
-        <button onClick={() => setActiveTab('inventry')} className="flex items-center w-full px-4 py-2 text-left hover:bg-gray-200">
+        {/* <button onClick={() => setActiveTab('inventry')} className="flex items-center w-full px-4 py-2 text-left hover:bg-gray-200">
           <UserAddIcon className="w-5 h-5 mr-2" /> Inventry
+        </button> */}
+        <button onClick={() => setActiveTab('allreservation')} className="flex items-center w-full px-4 py-2 text-left hover:bg-gray-200">
+          <UserAddIcon className="w-5 h-5 mr-2" /> Reservation
         </button>
       </nav>
     </div>

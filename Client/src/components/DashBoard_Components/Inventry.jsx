@@ -1,6 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import { toast } from "react-toastify";
 
 function Inventory() {
   const token = localStorage.getItem("token");
@@ -35,12 +36,14 @@ function Inventory() {
   const addOrEditInventory = async () => {
     const { itemName, quantity, unit, threshold } = newItem;
     if (!itemName || !quantity || !unit || !threshold) {
-      alert("Please fill all fields");
+      // alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
     if (isNaN(quantity) || isNaN(threshold)) {
-      alert("Quantity and Threshold must be numbers");
+      // alert("Quantity and Threshold must be numbers");
+      toast.error("Quantity and Threshold must be numbers");
       return;
     }
 
@@ -63,7 +66,8 @@ function Inventory() {
         setInventory([...inventory, res.data.newItem]);
       }
 
-      alert(res.data.message);
+      // alert(res.data.message);
+      toast.success(res.data.message);
       setNewItem({ itemName: "", quantity: "", unit: "", threshold: "" });
       setShowModal(false);
       setEditingItemId(null); // reset edit mode
@@ -71,7 +75,8 @@ function Inventory() {
       fetchInventory();
 
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to add/update item");
+      // alert(error.response?.data?.message || "Failed to add/update item");
+      toast.error(error.response?.data?.message || "Failed to add/update item");
     }
   };
 

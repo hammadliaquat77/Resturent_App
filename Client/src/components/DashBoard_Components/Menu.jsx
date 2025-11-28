@@ -3,6 +3,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMenu } from "../../redux/slices/product.Slice";
 
+import { toast } from "react-toastify";
+
 function Menu() {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
@@ -30,7 +32,8 @@ function Menu() {
     e.preventDefault();
 
     if (!newItem.name || !newItem.price || !newItem.category || !newItem.description || newItem.isAvailable === "" || (!imageFile && !editMenu)) {
-      alert("Please fill in all the required fields.");
+      // alert("Please fill in all the required fields.");
+      toast.error("Please fill in all the required fields.");
       return;
     }
 
@@ -56,7 +59,8 @@ function Menu() {
             },
           }
         );
-        alert("Menu updated successfully!");
+        // alert("Menu updated successfully!");
+        toast.success("Menu updated successfully!");
       } else {
         // Add menu
         await axios.post(
@@ -69,7 +73,8 @@ function Menu() {
             },
           }
         );
-        alert("Menu added successfully!");
+        // alert("Menu added successfully!");
+        toast.success("Menu added successfully!");
       }
 
       // Reset form
@@ -86,7 +91,8 @@ function Menu() {
       // Refresh menu table
       dispatch(fetchMenu());
     } catch (error) {
-      alert(error.response?.data?.message || "Error processing request");
+      // alert(error.response?.data?.message || "Error processing request");
+        toast.error(error.response?.data?.message || "Error processing request");
     }
   };
 
@@ -111,10 +117,12 @@ function Menu() {
       await axios.delete(`http://localhost:8000/api/menu/delete/${itemId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert("Menu deleted successfully!");
+      // alert("Menu deleted successfully!");
+      toast.success("Menu deleted successfully!");
       dispatch(fetchMenu());
     } catch (error) {
-      alert(error.response?.data?.message || "Error deleting item");
+      // alert(error.response?.data?.message || "Error deleting item");
+      toast.error(error.response?.data?.message || "Error deleting item");
     }
   };
 
@@ -239,6 +247,7 @@ function Menu() {
                   <img
                     src={item.image}
                     alt="food"
+                    loading="lazy"
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 </td>
