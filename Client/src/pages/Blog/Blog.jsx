@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 // import Bg from "../../assets/Section8/Bg.png";
 import Bg from "../../assets/Section2/Bg.png"
 
+import { useSelector } from 'react-redux';
+
 import DeliveryMen from "../../assets/Section8/delivery-man.png";
 import Zinger from "../../assets/Section8/Zinger.png";
 import Pasta from "../../assets/Section8/Pasta.png";
@@ -15,6 +17,9 @@ import BeefBurger from "../../assets/Section8/BeefBurger.png";
 import Burger from "../../assets/Section8/Burger.png";
 
 function Blog() {
+
+    const darkMode = useSelector((state) => state.darkMode.darkMode);
+    
     const settings = {
         dots: false,
         infinite: true,
@@ -99,7 +104,8 @@ function Blog() {
     ];
 
     return (
-        <section className='relative bg-white flex flex-col overflow-hidden'>
+        <section className={`relative bg-white flex flex-col overflow-hidden 
+        ${darkMode ? "bg-gray-900 text-white"  : "bg-white text-gray-900"} `}>
             {/* Hero Section */}
             <div className='relative w-full h-[400px] md:h-[500px] bg-gray-500 flex items-center justify-center' style={{backgroundImage: `url(${Bg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                 <div className='text-center text-white px-4'>
@@ -109,15 +115,15 @@ function Blog() {
             </div>
 
             {/* Blog Posts Section */}
-            <div className='py-16 px-4 md:px-20'>
+            <div className={`py-16 px-4 md:px-20 ${darkMode ? "bg-gray-900 text-white"  : "bg-white text-gray-900"}`}>
                 <div className='max-w-7xl mx-auto'>
                     <h2 className='text-2xl md:text-3xl font-bold text-center mb-12'>Latest Posts</h2>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
                         {blogPosts.map((post) => (
                             <div key={post.id} className='bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300'>
-                                <img src={post.image} alt={post.title} className='w-full h-48 object-cover' />
+                                <img src={post.image} alt={post.title} className={`w-full h-48 object-cover ${darkMode ? "brightness-75" : "brightness-100"}`} />
                                 <div className='p-6'>
-                                    <h3 className='text-xl font-bold mb-2'>{post.title}</h3>
+                                    <h3 className={`text-xl font-bold mb-2 ${darkMode ? "text-black" : "text-gray-900"}`}>{post.title}</h3>
                                     <p className='text-gray-600 mb-4'>{post.excerpt}</p>
                                     <div className='flex justify-between items-center text-sm text-gray-500'>
                                         <span>{post.date}</span>
@@ -132,7 +138,7 @@ function Blog() {
             </div>
 
             {/* Featured Dishes Slider */}
-            <div className='bg-[#F5F8FD] py-16 px-4 md:px-20'>
+            <div className={`bg-[#F5F8FD] py-16 px-4 md:px-20 ${darkMode ? "bg-gray-900 text-white"  : "bg-white text-gray-900"}`}>
                 <div className='max-w-7xl mx-auto'>
                     <h2 className='text-2xl md:text-3xl font-bold text-center mb-8'>Featured Dishes</h2>
                     <Slider {...settings}>
@@ -159,15 +165,15 @@ function Blog() {
             </div>
 
             {/* Newsletter Section */}
-            <div className='py-16 px-4 md:px-20 bg-gray-100'>
+            <div className={`py-16 px-4 md:px-20 bg-gray-100 ${darkMode ? "bg-gray-900 text-white"  : "bg-white text-gray-900"}`}>
                 <div className='max-w-4xl mx-auto text-center'>
                     <h2 className='text-2xl md:text-3xl font-bold mb-4'>Subscribe to Our Newsletter</h2>
-                    <p className='text-gray-700 mb-8'>Get the latest recipes, tips, and updates delivered to your inbox.</p>
+                    <p className={` mb-8 ${darkMode ? "text-white"  : "text-gray-700"}`}>Get the latest recipes, tips, and updates delivered to your inbox.</p>
                     <form className='flex flex-col sm:flex-row gap-4 justify-center'>
                         <input
                             type="email"
                             placeholder="Email Address"
-                            className="p-3 rounded-lg border border-gray-300 flex-1 max-w-md"
+                            className={`p-3 rounded-lg border border-gray-300 flex-1 max-w-md ${darkMode ? "bg-gray-800 text-white"  : "bg-white text-gray-900"}`}
                         />
                         <button
                             type="submit"

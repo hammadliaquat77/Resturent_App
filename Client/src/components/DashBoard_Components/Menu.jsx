@@ -635,7 +635,7 @@ function Menu() {
                 src={item.image}
                 alt="food"
                 loading="lazy"
-                className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 mb-1">{item.name}</h3>

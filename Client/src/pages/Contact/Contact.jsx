@@ -3,6 +3,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import { useSelector } from 'react-redux';
+
 // Assuming you have these assets; replace with actual paths if needed
 // import Bg from "../../assets/Section8/Bg.png";
 import Bg from "../../assets/Section2/Bg.png"
@@ -14,6 +16,9 @@ import BeefBurger from "../../assets/Section8/BeefBurger.png";
 import Burger from "../../assets/Section8/Burger.png";
 
 function Contact() {
+
+    const darkMode = useSelector((state)=> state.darkMode.darkMode);
+
     const settings = {
         dots: false,
         infinite: true,
@@ -57,7 +62,7 @@ function Contact() {
             </div>
 
             {/* Contact Form and Info Section */}
-            <div className='py-16 px-4 md:px-20'>
+            <div className={`py-16 px-4 md:px-20 ${darkMode ? "bg-gray-900 text-white" : "text-gray-700"} `}>
                 <div className='max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12'>
                     {/* Contact Info */}
                     <div>
@@ -71,7 +76,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className='font-bold text-lg'>Address</h3>
-                                    <p className='text-gray-700'>Karachi City Pakistan</p>
+                                    <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>Karachi City Pakistan</p>
                                 </div>
                             </div>
                             <div className='flex items-start space-x-4'>
@@ -82,7 +87,7 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className='font-bold text-lg'>Phone</h3>
-                                    <p className='text-gray-700'>+92 316-3093-120</p>
+                                    <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>+92 316-3093-120</p>
                                 </div>
                             </div>
                             <div className='flex items-start space-x-4'>
@@ -94,14 +99,14 @@ function Contact() {
                                 </div>
                                 <div>
                                     <h3 className='font-bold text-lg'>Email</h3>
-                                    <p className='text-gray-700'>hammadraza9391@gmail.com</p>
+                                    <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>hammadraza9391@gmail.com</p>
                                 </div>
                             </div>
                         </div>
                         <div className='mt-8'>
                             <h3 className='font-bold text-lg mb-4'>Business Hours</h3>
-                            <p className='text-gray-700'>Monday - Saturday: 12:00pm - 12:00am</p>
-                            <p className='text-gray-700'>Closed on Sunday</p>
+                            <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>Monday - Saturday: 12:00pm - 12:00am</p>
+                            <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>Closed on Sunday</p>
                         </div>
                     </div>
 
@@ -113,26 +118,30 @@ function Contact() {
                                 <input
                                     type='text'
                                     placeholder='Your Name'
-                                    className='p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500'
+                                    className={`p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500
+                                        ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
                                     required
                                 />
                                 <input
                                     type='email'
                                     placeholder='Your Email'
-                                    className='p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500'
+                                    className={`p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 
+                                         ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
                                     required
                                 />
                             </div>
                             <input
                                 type='text'
                                 placeholder='Subject'
-                                className='w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500'
+                                className={`w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 *:
+                                     ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
                                 required
                             />
                             <textarea
                                 placeholder='Your Message'
                                 rows='6'
-                                className='w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500'
+                                className={`w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 
+                                     ${darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"}`}
                                 required
                             ></textarea>
                             <button
@@ -147,7 +156,7 @@ function Contact() {
             </div>
 
             {/* Map Section (Placeholder) */}
-            <div className='py-16 px-4 md:px-20 bg-gray-100'>
+            <div className={`py-16 px-4 md:px-20 bg-gray-100 ${darkMode ? "bg-gray-800" : ""}`}>
                 <div className='max-w-6xl mx-auto'>
                     <h2 className='text-2xl md:text-3xl font-bold text-center mb-8'>Find Us</h2>
                     <div className='h-64 bg-gray-300 rounded-lg flex items-center justify-center'>
@@ -157,7 +166,7 @@ function Contact() {
             </div>
 
             {/* Featured Dishes Slider */}
-            <div className='py-16 px-4 md:px-20'>
+            <div className={`py-16 px-4 md:px-20 ${darkMode ? "bg-gray-900" : ""}`}>
                 <div className='max-w-7xl mx-auto'>
                     <h2 className='text-2xl md:text-3xl font-bold text-center mb-8'>Our Popular Dishes</h2>
                     <Slider {...settings}>

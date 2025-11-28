@@ -1,10 +1,15 @@
 import React from 'react'
 import Button from './FooterButton'
 
+import { useSelector } from 'react-redux'
+
 function Footer() {
+
+    const darkMode = useSelector((state)=> state.darkMode.darkMode);
+
     return (
         <section>
-            <footer className="bg-gray-100 p-8">
+            <footer className={`${darkMode ? "bg-gray-800" : "bg-gray-100"} p-8`}>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8">
 
                     {/* Left Red Box Section */}
@@ -18,9 +23,9 @@ function Footer() {
                     </div>
 
                     {/* About Section */}
-                    <div className="w-full md:w-1/6">
+                    <div className={`w-full md:w-1/6 ${darkMode ? "text-white" : "text-gray-700"}`}>
                         <h3 className="text-lg font-bold border-b-4 border-yellow-400 pb-1 mb-4">About</h3>
-                        <ul className="space-y-2 text-gray-700">
+                        <ul className={`space-y-2 ${darkMode ? "text-white" : "text-gray-700"} `}>
                             <li>Fredoka One</li>
                             <li>Special Dish</li>
                             <li>Reservation</li>
@@ -29,9 +34,9 @@ function Footer() {
                     </div>
 
                     {/* Menu Section */}
-                    <div className="w-full md:w-1/6">
+                    <div className={`w-full md:w-1/6 ${darkMode ? "text-white" : "text-gray-700"}`}>
                         <h3 className="text-lg font-bold border-b-4 border-yellow-400 pb-1 mb-4">Menu</h3>
-                        <ul className="space-y-2 text-gray-700">
+                        <ul className={`space-y-2 ${darkMode ? "text-white" : "text-gray-700"} `}>
                             <li>Steaks</li>
                             <li>Burgers</li>
                             <li>Coctails</li>
@@ -41,14 +46,14 @@ function Footer() {
                     </div>
 
                     {/* Newsletter Section */}
-                    <div className="w-full md:w-1/4">
+                    <div className={`w-full md:w-1/4  ${darkMode ? "text-white" : "text-gray-700"}`}>
                         <h3 className="text-lg font-bold border-b-4 border-yellow-400 pb-1 mb-4">Newsletter</h3>
-                        <p className="mb-4 text-gray-700">Get recent news and updates.</p>
+                        <p className={`mb-4 ${darkMode ? "text-white" : "text-gray-700"} `}>Get recent news and updates.</p>
                         <form className="flex flex-col sm:flex-row gap-4">
                             <input
                                 type="email"
                                 placeholder="Email Address"
-                                className="p-3 rounded-lg border border-gray-300 flex-1"
+                                className={`p-3 rounded-lg border border-gray-300 flex-1 ${darkMode ? "bg-gray-700 text-white" : "bg-white"} focus:outline-none focus:border-red-500`}
                             />
                             <button
                                 type="submit"
@@ -62,12 +67,9 @@ function Footer() {
                 </div>
 
                 {/* Bottom Footer Bar */}
-                <div className="border-t border-yellow-400 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center text-gray-700 font-semibold text-sm">
-                    <p>© 2025 {Date.now()} TasteNest | All shawonetc3 Themes</p>
+                <div className={`border-t border-yellow-400 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center text-gray-700 font-semibold text-sm`}>
+                    <p className={`${darkMode ? "text-white" : "text-gray-700"}`}>© {new Date().getFullYear()} TasteNest | All shawonetc3 Themes</p>
                     <div className="flex space-x-6 mt-2 md:mt-0">
-                        {/* <a href="#" className="underline">Facebook</a>
-                        <a href="#" className="underline">Instagram</a> */}
-
 
                       <Button/>
 

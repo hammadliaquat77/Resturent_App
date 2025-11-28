@@ -166,7 +166,7 @@ function Dashboard() {
     "bg-gradient-to-r from-white to-gray-50 p-6 rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer";
 
   return (
-    <div className="p-4 md:p-6 mt-10 md:mt-0 min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
+    <div className="p-4 md:p-6 mt-10 md:mt-0 min-h-screen from-gray-100 to-gray-200">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">

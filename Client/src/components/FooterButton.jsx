@@ -3,9 +3,14 @@ import Linkdin from "../assets/Footer/linkedin.png";
 import Facebook from "../assets/Footer/facebook.png";
 import Instagram from "../assets/Footer/instagram.png";
 
+import {useSelector} from "react-redux";
+
 const Button = () => {
+
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
+
   return (
-    <div>
+    <div className={`${darkMode ? "bg-gray-800" : "bg-gray-200"}`}>
       <svg width={0} height={0} style={{position: 'absolute'}}>
         <defs>
           <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">

@@ -74,7 +74,7 @@ function App() {
   const HideFooter = location.pathname === "/login" || location.pathname === "/signup"
     || location.pathname === "/cart" || location.pathname === "/dashboard" || location.pathname === "/myorders"
     || location.pathname === "/checkout" || location.pathname === "/shop" || location.pathname === "/reservation"
-    || location.pathname === "/myreservation";
+    || location.pathname === "/myreservation" || location.pathname.startsWith("/single/");
 
   const HideNavbar = location.pathname === "/login"  
   || location.pathname === "/signup" || location.pathname === "/dashboard";
@@ -104,8 +104,8 @@ function App() {
       {!HideFooter && <Footer />}
 
       <ToastContainer
-        position="top-center"
-        autoClose={3000}
+        position="top-right"
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={true}
         closeOnClick

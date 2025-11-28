@@ -154,7 +154,15 @@ function Checkout() {
                   type="text"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleChange}
+                  minLength={11}
+                  maxLength={11}
+                  onChange={
+                    (e) => {
+                      const onlyNumber = e.target.value.replace(/[^0-9]/g, "");
+                      setFormData({ ...formData, phone: onlyNumber });
+                    }
+                  }
+
                   required
                   className="w-full border p-3 rounded-lg outline-none focus:ring-2 focus:ring-red-400"
                 />

@@ -184,13 +184,6 @@
 
 
 
-
-
-
-
-
-
-
 // changes ui with lazy loading images
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -200,7 +193,11 @@ import { FaSearch, FaFilter } from "react-icons/fa"; // Assuming you have react-
 
 import ProductCard from "../../components/ProductCard";
 
+
 function Shop() {
+
+  const darkMode = useSelector((state)=> state.darkMode.darkMode);
+  
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.menu); // all items
   const [categories, setCategories] = useState([]);
@@ -237,28 +234,38 @@ function Shop() {
   }, [selectedCategory, items, searchTerm]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br w-full from-gray-50 to-gray-100 absolute mt-16 md:mt-16">
+    <div className={`min-h-screen w-full absolute mt-16 md:mt-16 transition-colors duration-300 ${
+      darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-gray-50 to-gray-100'
+    }`}>
       {/* Header Section */}
-      <header className="bg-white shadow-lg py-6 px-4 md:px-20">
+      <header className={`shadow-lg py-6 px-4 md:px-20 transition-colors duration-300 ${
+        darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+      }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <h1 className="md:text-4xl font-extrabold text-gray-900">
+          <h1 className={`md:text-4xl font-extrabold ${
+            darkMode ? 'text-white' : 'text-gray-900'
+          }`}>
             Our Menu
           </h1>
           {/* Search Bar */}
           <div className="relative w-full max-w-md">
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <FaSearch className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${
+              darkMode ? 'text-gray-400' : 'text-gray-400'
+            }`} />
             <input
               type="text"
               placeholder="Search products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300  rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 "
+              className={`w-full pl-10 pr-4 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-300 ${
+                darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'border-gray-300 bg-white text-gray-900'
+              }`}
             />
           </div>
           {/* Mobile Sidebar Toggle */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition"
+            className={`md:hidden p-2 text-white rounded-full hover:bg-red-600 transition bg-red-500`}
           >
             <FaFilter />
           </button>
@@ -268,11 +275,13 @@ function Shop() {
       <div className="max-w-7xl mx-auto px-4 md:px-20 py-8 flex">
         {/* Sidebar for Categories */}
         <aside
-          className={`w-full md:w-1/4 bg-white  shadow-lg rounded-lg p-6 mb-8 md:mb-0 md:mr-8 transition-transform duration-300 ${
+          className={`w-full md:w-1/4 shadow-lg rounded-lg p-6 mb-8 md:mb-0 md:mr-8 transition-all duration-300 ${
             isSidebarOpen ? "block" : "hidden md:block"
-          }`}
+          } ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}
         >
-          <h3 className="text-xl font-bold mb-4 text-gray-900 ">
+          <h3 className={`text-xl font-bold mb-4 ${
+            darkMode ? 'text-white' : 'text-gray-900'
+          }`}>
             Categories
           </h3>
           <ul className="space-y-2">
@@ -286,7 +295,9 @@ function Shop() {
                   className={`w-full text-left cursor-pointer px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                     selectedCategory === cat
                       ? "bg-red-500 text-white shadow-md"
-                      : "bg-gray-100 text-gray-700  hover:bg-red-100  hover:text-red-600"
+                      : darkMode
+                        ? "bg-gray-700 text-gray-300 hover:bg-red-600 hover:text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-600"
                   }`}
                 >
                   {cat}
@@ -301,17 +312,17 @@ function Shop() {
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((product) => (
-              <ProductCard key={product._id} product={product}/>
+              <ProductCard key={product._id} product={product} darkMode={darkMode} />
             ))}
           </div>
 
           {filteredItems.length === 0 && (
-            <div className="text-center py-16">
+            <div className={`text-center py-16 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               <FaSearch className="mx-auto text-6xl text-gray-400 mb-4" />
-              <p className="text-xl text-gray-500">
+              <p className="text-xl">
                 No products found matching your criteria.
               </p>
-              <p className="text-gray-400 mt-2">
+              <p className={`mt-2 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                 Try adjusting your search or category filter.
               </p>
             </div>
