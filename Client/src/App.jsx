@@ -88,9 +88,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/about' element={<ProtectedRoute><About /></ProtectedRoute>} />
-        <Route path='/blog' element={<ProtectedRoute><Blog /></ProtectedRoute>} />
-        <Route path='/contact' element={<ProtectedRoute><Contact /></ProtectedRoute>} />
+        <Route path='/about' element={<About />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/contact' element={<Contact />}/>
         <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
         <Route path='/checkout' element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         <Route path='/myorders' element={<ProtectedRoute><MyOrders /></ProtectedRoute>} />
