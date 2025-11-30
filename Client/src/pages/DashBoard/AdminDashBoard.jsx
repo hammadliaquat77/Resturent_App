@@ -44,7 +44,7 @@
 
 
 
-
+//  WIth Dark Mode
 import React, { useState } from 'react';
 import Sidebar from '../../components/DashBoard_Components/Sidebar';
 import Dashboard from '../../components/DashBoard_Components/Dashboard';
@@ -55,7 +55,12 @@ import Staffs from '../../components/DashBoard_Components/Staffs';
 import Inventory from '../../components/DashBoard_Components/Inventry';
 import AdminReservation from '../../components/DashBoard_Components/Reservation';
 
+import { useSelector } from "react-redux";
+
 function AdminDashBoard() {
+
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
+
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const renderContent = () => {
@@ -72,7 +77,8 @@ function AdminDashBoard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className={`flex h-screen 
+    ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"}`}>
       <Sidebar setActiveTab={setActiveTab} activeTab={activeTab} />
       <div className="flex-1 p-6 overflow-auto">
         {renderContent()}

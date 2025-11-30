@@ -260,6 +260,13 @@
 
 
 
+
+
+
+
+
+
+// // With Redux and DarkMode
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -269,31 +276,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenu } from "../../redux/slices/product.Slice";
 import { Link } from "react-router-dom";
 
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-
 function Section3() {
-
-  AOS.init({
+  // Initialize AOS only once when the component mounts
+  useEffect(() => {
+    AOS.init({
       duration: 1000,
       once: false,
       mirror: true,
     });
+  }, []);
 
-
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.menu);
 
-  useEffect(()=> {
-     dispatch(fetchMenu())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(fetchMenu());
+  }, [dispatch]);
 
-  // console.log("ITEMS==> ", items);
-
-  const [seeAll, setSeeAll] = useState(false);
-  const visibleItems = seeAll ? items : items.slice(0, 8);
+  // For mobile, show all items since the slider handles scrolling
+  // For larger screens, show only first 8
+  const isMobile = window.innerWidth < 768; // Adjust breakpoint as needed
+  const visibleItems = isMobile ? items : items.slice(0, 8);
 
   const settings = {
     dots: false,
@@ -333,7 +340,8 @@ function Section3() {
   };
 
   return (
-    <section className="relative w-full bg-[#F5F8FD] flex flex-col overflow-hidden">
+    <section className={`relative w-full flex flex-col overflow-hidden
+    ${darkMode ? "bg-gray-800 text-white" : "bg-[#F5F8FD] text-black"}`}>
       <div className="text-center py-14 flex flex-col gap-3">
         <h2 className="text-green-600 text-sm uppercase">crispy, every bite taste</h2>
         <h1 className="text-3xl font-bold">Popular Fast Foods</h1>
@@ -342,44 +350,34 @@ function Section3() {
       <main className="md:px-20 px-4 pb-10">
         <Slider {...settings}>
           {visibleItems.map((item) => (
-            <Link to={`/single/${item._id}`}>
-
-            <div data-aos="fade-up" key={item._id} className="px-2 min-w-0">
-              <div className="bg-white rounded-2xl flex flex-col items-center py-6 shadow-md hover:scale-105 transition-transform duration-200">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 rounded-full object-cover"
-                />
-                <div className="flex flex-wrap justify-center items-center gap-2 mt-4">
-                  <span className="text-[10px] px-2 py-1 bg-[#FFC222] text-black font-bold rounded">
-                    {item.discount}
-                  </span>
-                  <span className="text-[13px] text-gray-400 font-semibold line-through">
-                    Rs.{item.oldPrice}
-                  </span>
-                  <span className="text-[14px] text-gray-600 font-semibold">
-                    Rs.{item.newPrice}
-                  </span>
+            <Link to={`/single/${item._id}`} key={item._id}>
+              <div data-aos="fade-up" className="px-2 min-w-0">
+                <div className={`rounded-2xl flex flex-col items-center py-6 shadow-md hover:scale-105 transition-transform duration-200 
+                ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"}`}>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-28 w-28 sm:h-32 sm:w-32 md:h-36 md:w-36 rounded-full object-cover"
+                  />
+                  <div className="flex flex-wrap justify-center items-center gap-2 mt-4">
+                    <span className="text-[10px] px-2 py-1 bg-[#FFC222] text-black font-bold rounded">
+                      {item.discount}
+                    </span>
+                    <span className={`text-[13px] font-semibold line-through 
+                    ${darkMode ? "text-gray-400" : "text-gray-400"}`}>
+                      Rs.{item.oldPrice}
+                    </span>
+                    <span className={`text-[14px] font-semibold 
+                    ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
+                      Rs.{item.newPrice}
+                    </span>
+                  </div>
+                  <p className="text-md font-bold mt-2 text-center">{item.name}</p>
                 </div>
-                <p className="text-md font-bold mt-2 text-center">{item.name}</p>
               </div>
-            </div>
             </Link>
-
           ))}
         </Slider>
-
-        {items.length > 8 && (
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={() => setSeeAll(!seeAll)}
-              className="hidden md:block px-6 py-2 bg-[#FFC222] mb-14 text-black font-semibold rounded-lg shadow hover:bg-[#ffb800] transition"
-            >
-              {seeAll ? "See Less" : "See All"}
-            </button>
-          </div>
-        )}
       </main>
     </section>
   );

@@ -184,7 +184,7 @@
 
 
 
-// changes ui with lazy loading images
+ // changes ui with lazy loading images
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMenu } from "../../redux/slices/product.Slice";

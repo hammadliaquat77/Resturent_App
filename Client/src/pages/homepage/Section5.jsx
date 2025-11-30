@@ -1,26 +1,60 @@
+
 // import React from "react";
 
 // function Section5() {
 //   return (
 //     <section className="relative overflow-hidden bg-white py-8 flex justify-center items-center">
-//       <div className="whitespace-nowrap flex items-center animate-marquee">
+//       <div
+//         className="whitespace-nowrap flex items-center"
+//         style={{
+//           animation: "marquee 20s linear infinite",
+//         }}
+//       >
 //         {/* 1st Text */}
-//         <h1 className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent stroke-gray">
+//         <h1
+//           className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent"
+//           style={{
+//             WebkitTextStroke: "1px #bfbfbf",
+//             color: "transparent",
+//           }}
+//         >
 //           Populer Dishes
 //         </h1>
+
 //         <span className="text-[70px] sm:text-[80px] md:text-[100px] mx-10">🍔</span>
 
 //         {/* 2nd Text */}
-//         <h1 className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent stroke-yellow">
+//         <h1
+//           className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent"
+//           style={{
+//             WebkitTextStroke: "1px #ffc222",
+//             color: "transparent",
+//           }}
+//         >
 //           Populer Dishes
 //         </h1>
+
 //         <span className="text-[70px] sm:text-[80px] md:text-[100px] mx-10">🍕</span>
 
 //         {/* 3rd Text */}
-//         <h1 className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent stroke-gray">
+//         <h1
+//           className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent"
+//           style={{
+//             WebkitTextStroke: "1px #bfbfbf",
+//             color: "transparent",
+//           }}
+//         >
 //           Trending Foods
 //         </h1>
 //       </div>
+
+//       {/* Inline <style> for keyframes */}
+//       <style>{`
+//         @keyframes marquee {
+//           0% { transform: translateX(0%); }
+//           100% { transform: translateX(-50%); }
+//         }
+//       `}</style>
 //     </section>
 //   );
 // }
@@ -31,13 +65,16 @@
 
 
 
-
-
 import React from "react";
+import { useSelector } from 'react-redux';
 
 function Section5() {
+  const darkMode = useSelector((state) => state.darkMode.darkMode);
+
   return (
-    <section className="relative overflow-hidden bg-white py-8 flex justify-center items-center">
+    <section className={`relative overflow-hidden py-8 flex justify-center items-center ${
+      darkMode ? "bg-gray-900" : "bg-white"
+    }`}>
       <div
         className="whitespace-nowrap flex items-center"
         style={{
@@ -48,7 +85,7 @@ function Section5() {
         <h1
           className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent"
           style={{
-            WebkitTextStroke: "1px #bfbfbf",
+            WebkitTextStroke: `1px ${darkMode ? "#ffffff" : "#bfbfbf"}`,
             color: "transparent",
           }}
         >
@@ -74,7 +111,7 @@ function Section5() {
         <h1
           className="text-[80px] sm:text-[100px] md:text-[150px] font-extrabold text-transparent"
           style={{
-            WebkitTextStroke: "1px #bfbfbf",
+            WebkitTextStroke: `1px ${darkMode ? "#ffffff" : "#bfbfbf"}`,
             color: "transparent",
           }}
         >
