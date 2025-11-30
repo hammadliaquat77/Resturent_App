@@ -509,6 +509,8 @@ function Menu() {
             <option value="Pizza">Pizza</option>
             <option value="Bbq">BBQ</option>
             <option value="Shake">Shake</option>
+            <option value="Biryani">Biryani</option>
+            <option value="Dishes">Dishes</option>
           </select>
 
           <select
@@ -540,7 +542,7 @@ function Menu() {
 
         <button
           type="submit"
-          className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="mt-4 w-full bg-blue-600 cursor-pointer text-white py-2 rounded hover:bg-blue-700 transition"
         >
           {editMenu ? "Update Menu Item" : "Add Menu Item"}
         </button>

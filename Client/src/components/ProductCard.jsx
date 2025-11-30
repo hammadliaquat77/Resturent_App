@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function ProductCard({product}) {
-    return (
+  
+   const darkMode = useSelector((state)=> state.darkMode.darkMode);
+  
+  return (
         <>
       {/* <Link to={/single/${product._id}} className="block"> */}
 
@@ -20,7 +24,8 @@ function ProductCard({product}) {
                      />
                   </div>
 
-      <h3 className="text-lg font-semibold mb-2 text-gray-900 hover:text-red-500 transition-colors">
+      <h3 className={`text-lg font-semibold mb-2 text-gray-900 hover:text-red-500 transition-colors
+         ${darkMode && "text-white"} `}>
         {product.name}
       </h3>
     </Link>
