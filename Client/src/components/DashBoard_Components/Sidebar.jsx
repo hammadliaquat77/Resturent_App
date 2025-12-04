@@ -159,14 +159,14 @@ function Sidebar({ setActiveTab, activeTab }) {
             darkMode ? "border-gray-700" : "border-gray-200"
           }`}
         >
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl font-bold cursor-no-drop">
             Restaurant Admin
           </h2>
 
           <button
             onClick={toggleSidebar}
             className="lg:hidden p-1"
-            aria-label="Close Sidebar"
+            aria-label="Close Sidebar" 
           >
             <XIcon className="w-6 h-6" />
           </button>
@@ -185,7 +185,7 @@ function Sidebar({ setActiveTab, activeTab }) {
                   setActiveTab(item.key);
                   setIsOpen(false); // close on mobile
                 }}
-                className={`flex items-center w-full px-4 py-3 text-left transition-all duration-200
+                className={`flex items-center cursor-pointer w-full px-4 py-3 text-left transition-all duration-200
                   ${
                     isActive
                       ? darkMode

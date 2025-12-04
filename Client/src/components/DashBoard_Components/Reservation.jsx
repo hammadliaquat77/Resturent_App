@@ -525,13 +525,13 @@ function AdminReservation() {
       { value: "cancelled", label: "Cancel", color: "from-red-500 to-red-600", icon: "❌", disabled: resv.status === "cancelled" }
     ];
 
-
+// Approve / Cancel Button
     return statusOptions.map((option) => (
       <button
         key={option.value}
         onClick={() => updateStatus(resv._id, option.value)}
         disabled={option.disabled || updatingId === resv._id}
-        className={`flex items-center justify-center gap-2 bg-gradient-to-r ${option.color} hover:scale-105 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl font-medium text-sm ${option.disabled ? "opacity-50 cursor-not-allowed" : "hover:brightness-110"
+        className={`flex items-center justify-center cursor-pointer gap-2 bg-gradient-to-r ${option.color} hover:scale-105 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl font-medium text-sm ${option.disabled ? "opacity-50 cursor-not-allowed" : "hover:brightness-110"
           } ${updatingId === resv._id ? "animate-pulse" : ""}`}
       >
         <span>{option.icon}</span>
@@ -809,7 +809,7 @@ function AdminReservation() {
                         <button
                           onClick={() => deleteReservation(resv._id)}
                           disabled={deletingId === resv._id}
-                          className={`flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-medium text-sm ${deletingId === resv._id ? "animate-pulse opacity-75" : ""
+                          className={`flex items-center justify-center cursor-pointer gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-medium text-sm ${deletingId === resv._id ? "animate-pulse opacity-75" : ""
                             }`}
                         >
                           <span>🗑️</span>
@@ -822,7 +822,7 @@ function AdminReservation() {
                             onClick={() => {
                               showToast(`Special Request: ${resv.specialRequest}`, "info");
                             }}
-                            className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-medium text-sm"
+                            className="flex items-center justify-center cursor-no-drop gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-2 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 font-medium text-sm"
                           >
                             <span>📝</span>
                             View Request

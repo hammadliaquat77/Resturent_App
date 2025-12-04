@@ -383,7 +383,7 @@ function Orders() {
               {/* Actions */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <select
-                  className={`flex-1 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 ${darkMode ? "bg-gray-700 border-gray-600 text-white focus:ring-blue-500" : "bg-white border-gray-300 text-gray-800 focus:ring-blue-500"}`}
+                  className={`flex-1 px-3 py-2 cursor-pointer rounded-lg focus:outline-none focus:ring-2 ${darkMode ? "bg-gray-700 border-gray-600 text-white focus:ring-blue-500" : "bg-white border-gray-300 text-gray-800 focus:ring-blue-500"}`}
                   value={order.status}
                   onChange={(e) => handleStatus(order._id, e.target.value)}
                 >
@@ -394,7 +394,7 @@ function Orders() {
                 </select>
                 <button
                   onClick={() => deleteOrder(order._id)}
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition flex items-center justify-center"
+                  className="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-4 py-2 rounded-lg transition flex items-center justify-center"
                 >
                   <FiTrash2 className="mr-2" />
                   Delete

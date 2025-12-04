@@ -353,7 +353,7 @@ function Staffs() {
         <h1 className="text-3xl font-bold">Restaurant Staff</h1>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue-600 px-4 py-2 text-white rounded-lg hover:bg-blue-700"
+          className="bg-blue-600 px-4 py-2 cursor-pointer text-white rounded-lg hover:bg-blue-700"
         >
           + Add Staff
         </button>
@@ -379,12 +379,12 @@ function Staffs() {
               🕒 Shift: <span className={`px-2 py-1 text-xs rounded-full font-medium ${shiftColor(s.shift)}`}>{s.shift}</span>
             </p>
             <div className="mt-4 flex gap-2">
-              <button className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm">
+              <button disabled className="px-3 py-1 bg-yellow-500 text-white rounded cursor-no-drop hover:bg-yellow-600 text-sm">
                 Edit
               </button>
               <button
                 onClick={() => deleteStaff(s._id)}
-                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+                className="px-3 py-1 bg-red-500 text-white rounded cursor-pointer hover:bg-red-600 text-sm"
               >
                 Delete
               </button>
@@ -420,7 +420,7 @@ function Staffs() {
             />
 
             <select
-              className="border w-full px-3 py-2 rounded mb-3 bg-transparent"
+              className="border w-full px-3 py-2 rounded cursor-pointer mb-3 bg-transparent"
               value={newStaff.role}
               onChange={(e) => setNewStaff({ ...newStaff, role: e.target.value })}
             >
@@ -432,7 +432,7 @@ function Staffs() {
             </select>
 
             <select
-              className="border w-full px-3 py-2 rounded mb-3 bg-transparent"
+              className="border w-full px-3 py-2 rounded cursor-pointer mb-3 bg-transparent"
               value={newStaff.shift}
               onChange={(e) => setNewStaff({ ...newStaff, shift: e.target.value })}
             >
@@ -444,14 +444,14 @@ function Staffs() {
 
             <button
               onClick={addStaff}
-              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+              className="w-full bg-blue-600 text-white py-2 rounded-lg cursor-pointer hover:bg-blue-700"
             >
               Add Staff
             </button>
 
             <button
               onClick={() => setShowModal(false)}
-              className="w-full mt-2 bg-gray-300 py-2 rounded-lg hover:bg-gray-400"
+              className="w-full mt-2 bg-gray-300 py-2 rounded-lg cursor-pointer hover:bg-gray-400"
             >
               Cancel
             </button>

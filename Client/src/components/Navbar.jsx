@@ -346,7 +346,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="font-bold text-2xl text-yellow-500 hover:text-yellow-600 transition">
+          <Link to="/" className="font-bold text-2xl cursor-no-drop text-yellow-500 hover:text-yellow-600 transition">
             TasteNest
           </Link>
 
@@ -356,7 +356,7 @@ const Navbar = () => {
             <Link to="/about" className="hover:text-yellow-500 transition">About Us</Link>
 
             <div className="relative group">
-              <button className="inline-flex items-center hover:text-yellow-500 transition">
+              <button className="inline-flex items-center cursor-pointer hover:text-yellow-500 transition">
                 Shop
                 <svg className="ml-1 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />

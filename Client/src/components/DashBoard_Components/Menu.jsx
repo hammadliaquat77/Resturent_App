@@ -580,8 +580,8 @@ function Menu() {
                   </span>
                 </td>
                 <td className="p-4 flex gap-2">
-                  <button onClick={() => handleEdit(item)} className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm">Edit</button>
-                  <button onClick={() => handleDelete(item._id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">Delete</button>
+                  <button onClick={() => handleEdit(item)} className="px-3 py-1 bg-yellow-500 cursor-pointer text-white rounded hover:bg-yellow-600 text-sm">Edit</button>
+                  <button onClick={() => handleDelete(item._id)} className="px-3 py-1 bg-red-500 cursor-pointer text-white rounded hover:bg-red-600 text-sm">Delete</button>
                 </td>
               </tr>
             ))}
@@ -611,7 +611,7 @@ function Menu() {
                   <span className={`px-2 py-1 text-xs rounded-full font-medium ${getStatusColor(item.isAvailable ? "Available" : "Not Available")}`}>{item.isAvailable ? "Available" : "Not Available"}</span>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => handleEdit(item)} className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 text-sm">Edit</button>
+                  <button onClick={() => handleEdit(item)} className="px-3 py-1 bg-yellow-500  text-white rounded hover:bg-yellow-600 text-sm">Edit</button>
                   <button onClick={() => handleDelete(item._id)} className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">Delete</button>
                 </div>
               </div>

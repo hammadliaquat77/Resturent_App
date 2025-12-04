@@ -163,7 +163,7 @@ function Users() {
           </thead>
           <tbody>
             {Customer.map((user, index) => (
-              <tr key={index} className={`border-b transition hover:${darkMode ? "bg-gray-700" : "bg-gray-50"}`}>
+              <tr key={index} className={`border-b cursor-no-drop transition hover:${darkMode ? "bg-gray-700" : "bg-gray-50"}`}>
                 <td className="p-4 font-medium">{index + 1}</td>
                 <td className="p-4">{user.name}</td>
                 <td className="p-4">{user.email}</td>
