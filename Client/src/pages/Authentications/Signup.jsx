@@ -165,7 +165,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/register", deta);
+      const response = await axios.post("https://resturent-api-cg1s.onrender.com/api/auth/register", deta);
       console.log("Data==>", response.data);
       toast.success("Signup successful!");
 
