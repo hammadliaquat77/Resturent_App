@@ -259,7 +259,7 @@ function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full mt-2 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-3 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+            className="w-full mt-2 bg-yellow-400 cursor-pointer hover:bg-yellow-500 text-white font-semibold py-3 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
           >
             <FiLogIn />
             Login
