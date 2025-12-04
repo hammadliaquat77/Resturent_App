@@ -151,9 +151,11 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://resturent-api-cg1s.onrender.com/api/auth/login", deta, {
-        withCredentials: true,
-      });
+      const response = await axios.post("https://resturent-api-cg1s.onrender.com/api/auth/login", deta,
+      //    {
+      //   withCredentials: true,
+      // }
+    );
       console.log("Data==>", response.data);
 
       localStorage.setItem("token", response.data.token);
