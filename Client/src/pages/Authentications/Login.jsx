@@ -152,9 +152,9 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post("https://resturent-api-cg1s.onrender.com/api/auth/login", deta,
-      //    {
-      //   withCredentials: true,
-      // }
+         {
+        withCredentials: true,
+      }
     );
       console.log("Data==>", response.data);
 
