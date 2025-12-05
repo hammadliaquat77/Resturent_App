@@ -382,7 +382,7 @@ function Menu() {
 
       if (editMenu) {
         await axios.put(
-          `http://localhost:8000/api/menu/update/${editMenu._id}`,
+          `https://resturent-app-snowy.vercel.app/api/menu/update/${editMenu._id}`,
           formData,
           {
             headers: {
@@ -393,7 +393,7 @@ function Menu() {
         );
         toast.success("Menu updated successfully!");
       } else {
-        await axios.post("http://localhost:8000/api/menu/add", formData, {
+        await axios.post("https://resturent-app-snowy.vercel.app/api/menu/add", formData, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
@@ -427,7 +427,7 @@ function Menu() {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
 
     try {
-      await axios.delete(`http://localhost:8000/api/menu/delete/${itemId}`, {
+      await axios.delete(`https://resturent-app-snowy.vercel.app/api/menu/delete/${itemId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Menu deleted successfully!");

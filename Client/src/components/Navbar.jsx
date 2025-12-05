@@ -326,7 +326,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/auth/logout",
+        "https://resturent-app-snowy.vercel.app/api/auth/logout",
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

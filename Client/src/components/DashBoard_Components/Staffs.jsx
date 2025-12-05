@@ -277,7 +277,7 @@ function Staffs() {
 
   const fetchStaff = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/staff/all", {
+      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/staff/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStaff(res.data.allStaff);
@@ -299,7 +299,7 @@ function Staffs() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/staff/add",
+        "https://resturent-app-snowy.vercel.app/api/staff/add",
         newStaff,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -315,7 +315,7 @@ function Staffs() {
   const deleteStaff = async (id) => {
     if (window.confirm("Delete this staff member?")) {
       try {
-        const res = await axios.delete(`http://localhost:8000/api/staff/delete/${id}`, {
+        const res = await axios.delete(`https://resturent-app-snowy.vercel.app/api/staff/delete/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success(res.data.message);

@@ -452,7 +452,7 @@ function AdminReservation() {
   const fetchReservations = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/reservation/all", {
+      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/reservation/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -485,7 +485,7 @@ function AdminReservation() {
 
     try {
       setDeletingId(id);
-      const res = await axios.delete(`http://localhost:8000/api/reservation/delete/${id}`, {
+      const res = await axios.delete(`https://resturent-app-snowy.vercel.app/api/reservation/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       showToast(res.data.message, "success");
@@ -503,7 +503,7 @@ function AdminReservation() {
     try {
       setUpdatingId(id);
       const res = await axios.put(
-        `http://localhost:8000/api/reservation/update/${id}`,
+        `https://resturent-app-snowy.vercel.app/api/reservation/update/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

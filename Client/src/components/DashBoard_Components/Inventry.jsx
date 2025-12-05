@@ -23,7 +23,7 @@ function Inventory() {
   // Fetch inventory
   const fetchInventory = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/inventry/all", {
+      const response = await axios.get("https://resturent-app-snowy.vercel.app/api/inventry/all", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInventory(response.data.allInventry);
@@ -49,7 +49,7 @@ function Inventory() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/inventry/add",
+        "https://resturent-app-snowy.vercel.app/api/inventry/add",
         newItem,
         { headers: { Authorization: `Bearer ${token}` } }
       );

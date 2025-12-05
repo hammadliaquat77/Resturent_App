@@ -5,7 +5,7 @@ const token = localStorage.getItem("token");
 
 export const fetchCart = createAsyncThunk("cart/fetch", async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/cart/all", {
+    const res = await axios.get("https://resturent-app-snowy.vercel.app/api/cart/all", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -19,7 +19,7 @@ export const fetchCart = createAsyncThunk("cart/fetch", async () => {
 export const removeItemFromBackend = async (productId) => {
   try {
     const res = await axios.delete(
-      `http://localhost:8000/api/cart/remove/${productId}`,
+      `https://resturent-app-snowy.vercel.app/api/cart/remove/${productId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

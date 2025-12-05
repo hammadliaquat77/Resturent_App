@@ -196,7 +196,7 @@ function ReservationForm() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/reservation/create",
+        "https://resturent-app-snowy.vercel.app/api/reservation/create",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
