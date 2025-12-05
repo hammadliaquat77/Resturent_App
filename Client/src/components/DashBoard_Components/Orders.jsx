@@ -226,7 +226,7 @@ function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/order/all", {
+      const res = await axios.get("https://resturent-api-cg1s.onrender.com/api/order/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data.allOrders);
@@ -237,7 +237,7 @@ function Orders() {
 
   const handleStatus = async (id, status) => {
     await axios.put(
-      `https://resturent-app-snowy.vercel.app/api/order/update/${id}`,
+      `https://resturent-api-cg1s.onrender.com/api/order/update/${id}`,
       { status },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -246,7 +246,7 @@ function Orders() {
   };
 
   const deleteOrder = async (id) => {
-    await axios.delete(`https://resturent-app-snowy.vercel.app/api/order/delete/${id}`, {
+    await axios.delete(`https://resturent-api-cg1s.onrender.com/api/order/delete/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     toast.success("Order deleted successfully!");

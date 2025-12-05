@@ -149,7 +149,7 @@ function MyReservations() {
   const fetchReservations = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/reservation/myreservation", {
+      const res = await axios.get("https://resturent-api-cg1s.onrender.com/api/reservation/myreservation", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setReservations(res.data.myReservation || []);
@@ -169,7 +169,7 @@ function MyReservations() {
   const cancelReservation = async (id) => {
     try {
       const res = await axios.delete(
-        `https://resturent-app-snowy.vercel.app/api/reservation/cancel/${id}`,
+        `https://resturent-api-cg1s.onrender.com/api/reservation/cancel/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success(res.data.message);

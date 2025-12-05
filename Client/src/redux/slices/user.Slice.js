@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchUsers = createAsyncThunk("user/fetch", async () => {
     const token = localStorage.getItem("token");
     try {
-        const response = await axios.get("https://resturent-app-snowy.vercel.app/api/auth/users", {
+        const response = await axios.get("https://resturent-api-cg1s.onrender.com/api/auth/users", {
         headers: { Authorization: `Bearer ${token}` },
       });
         return response.data.allUser;

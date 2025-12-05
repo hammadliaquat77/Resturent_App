@@ -21,7 +21,7 @@ function Checkout() {
   //  Fetch Cart Items
   const getCartItems = async () => {
     try {
-      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/cart/all", {
+      const res = await axios.get("https://resturent-api-cg1s.onrender.com/api/cart/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -88,7 +88,7 @@ function Checkout() {
       };
 
       const res = await axios.post(
-        "https://resturent-app-snowy.vercel.app/api/order/place",
+        "https://resturent-api-cg1s.onrender.com/api/order/place",
         orderPayload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -102,7 +102,7 @@ function Checkout() {
 
 
       //     Clear Cart in Bakend
-      await axios.delete("https://resturent-app-snowy.vercel.app/api/cart/clear", {
+      await axios.delete("https://resturent-api-cg1s.onrender.com/api/cart/clear", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

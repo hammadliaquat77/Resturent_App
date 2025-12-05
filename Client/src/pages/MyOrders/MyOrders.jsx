@@ -182,7 +182,7 @@ function MyOrders() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/order/my", {
+      const res = await axios.get("https://resturent-api-cg1s.onrender.com/api/order/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data.myOrders);
@@ -202,7 +202,7 @@ function MyOrders() {
   const handleCancelOrder = async (orderId) => {
     try {
       const res = await axios.delete(
-        `https://resturent-app-snowy.vercel.app/api/order/cancel/${orderId}`,
+        `https://resturent-api-cg1s.onrender.com/api/order/cancel/${orderId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

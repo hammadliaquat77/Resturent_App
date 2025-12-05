@@ -277,7 +277,7 @@ function Staffs() {
 
   const fetchStaff = async () => {
     try {
-      const res = await axios.get("https://resturent-app-snowy.vercel.app/api/staff/all", {
+      const res = await axios.get("https://resturent-api-cg1s.onrender.com/api/staff/all", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStaff(res.data.allStaff);
@@ -299,7 +299,7 @@ function Staffs() {
 
     try {
       const res = await axios.post(
-        "https://resturent-app-snowy.vercel.app/api/staff/add",
+        "https://resturent-api-cg1s.onrender.com/api/staff/add",
         newStaff,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -315,7 +315,7 @@ function Staffs() {
   const deleteStaff = async (id) => {
     if (window.confirm("Delete this staff member?")) {
       try {
-        const res = await axios.delete(`https://resturent-app-snowy.vercel.app/api/staff/delete/${id}`, {
+        const res = await axios.delete(`https://resturent-api-cg1s.onrender.com/api/staff/delete/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         toast.success(res.data.message);

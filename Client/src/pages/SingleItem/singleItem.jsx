@@ -157,7 +157,7 @@ function SingleFood() {
   // Fetch single food item
   const fetchFood = async () => {
     try {
-      const res = await axios.get(`https://resturent-app-snowy.vercel.app/api/menu/single/${id}`, {
+      const res = await axios.get(`https://resturent-api-cg1s.onrender.com/api/menu/single/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       setFood(res.data.singlefood);
@@ -181,7 +181,7 @@ function SingleFood() {
 
     try {
       const res = await axios.post(
-        "https://resturent-app-snowy.vercel.app/api/cart/add",
+        "https://resturent-api-cg1s.onrender.com/api/cart/add",
         { productId: food._id, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );

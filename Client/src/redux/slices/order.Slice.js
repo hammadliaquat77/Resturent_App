@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchOrders = createAsyncThunk("orders/fetch", async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("https://resturent-app-snowy.vercel.app/api/order/all", {
+    const response = await axios.get("https://resturent-api-cg1s.onrender.com/api/order/all", {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data.allOrders; // backend se orders

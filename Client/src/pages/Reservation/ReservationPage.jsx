@@ -196,7 +196,7 @@ function ReservationForm() {
 
     try {
       const res = await axios.post(
-        "https://resturent-app-snowy.vercel.app/api/reservation/create",
+        "https://resturent-api-cg1s.onrender.com/api/reservation/create",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchMenu = createAsyncThunk("product/fetchMenu", async () => {
-    const response = await axios.get("https://resturent-app-snowy.vercel.app/api/menu/all");
+    const response = await axios.get("https://resturent-api-cg1s.onrender.com/api/menu/all");
     return response.data;
 });
 
