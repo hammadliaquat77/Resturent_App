@@ -258,7 +258,6 @@ function PopularFood() {
     <section className={`relative w-full min-h-[92vh] flex flex-col overflow-hidden 
     ${darkMode ? "bg-gray-800 text-white" : "bg-[#F5F8FD] text-gray-700"}`}>
 
-      ```
       {/* background shapes */}
       <img src={tomato_shape} alt="" className="absolute w-10 mt-10 hidden md:block" />
       <img src={burger_shape} alt="" className="absolute w-20 mt-[450px] ml-10 hidden md:block" />
