@@ -28,7 +28,7 @@ function Section2() {
             <h1 className='lg:text-4xl md:text-3xl sm:text-2xl text-2xl font-black'>Today's <span className='text-[#FFC222]'>Astackin</span> Day</h1>
             <div className='flex gap-3'>
             <p className='md:text-2xl text-md font-bold'>Grilled <span className='text-[#FFC222]'>Chicken</span> </p>
-            <span className='flex justify-center items-center font-bold md:text-xl text-sm text-[#FFC222]'>$59,00</span>
+            <span className='flex justify-center items-center font-bold md:text-xl text-sm text-[#FFC222]'>Rs.500</span>
             </div>
             <button className='md:w-40 md:h-16 h-10 w-20 rounded-2xl flex md:items-start items-center justify-center md:pt-4 text-[12px] md:text-xl cursor-pointer bg-[#EE284B]'>Order Now</button>
          </div>

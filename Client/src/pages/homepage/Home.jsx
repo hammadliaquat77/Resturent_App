@@ -38,7 +38,7 @@ const ImageList = [
     title: "Hot Spicy",
     highlight: "Chicken Burger",
     tag: "Crispy, Every Bite Taste",
-    price: "Limited Offer / $5",
+    price: "Limited Offer / Rs.250",
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ const ImageList = [
     title: "🔥 Flat 40% Off",
     highlight: "Juicy Burgers",
     tag: "Cheesy, crispy & loaded with flavors",
-    price: "Only Today!",
+    price: "Only Today! / Rs.350",
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ const ImageList = [
     title: "🍕 Buy 1 Get 1",
     highlight: "Free Pizza",
     tag: "Hot & Cheesy Large Pizza Offer",
-    price: "Save Big Now!",
+    price: "Save Big Now! / Rs.450",
   },
 ];
 
